@@ -1,18 +1,9 @@
-import { mount } from '@vue/test-utils'
-
-// The component to test
-const MessageComponent = {
-  template: '<p>{{ msg }}</p>',
-  props: ['msg']
-}
-
-test('displays message', () => {
-  const wrapper = mount(MessageComponent, {
-    props: {
-      msg: 'Hello world'
-    }
-  })
-
-  // Assert the rendered text of the component
-  expect(wrapper.text()).toContain('Hello world')
-})
+import { add } from '../views';
+describe('button error', () => {
+  it('1 + 1 shoule be 2', () => {
+    expect(2).toBe(2) 
+  });
+  it('1 + 1 shoule be 2', () => {
+    expect(add(1,1)).toBe(2) 
+  });
+});
