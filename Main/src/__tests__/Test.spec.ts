@@ -1,5 +1,5 @@
-describe('test cases', () => {
-  it('1 + 1 shoule be 2', () => {
-    expect(1 + 1).toBe(2)
-  });
-});
+import { add } from "../views";
+
+it('1 + 1 shoule be 2, too', () => {
+  expect(add(1,1)).toBe(2)
+})
