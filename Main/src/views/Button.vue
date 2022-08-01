@@ -4,7 +4,7 @@
   
 <script setup lang='ts'>
 const throwError = () => {
-  throw new Error('Test error');
+  window.add.error = 'error'
 } 
 </script>
   
