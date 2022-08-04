@@ -35,4 +35,8 @@
       "path": "./tsconfig.node.json"
     }
   ],
+  "typeAcquisition": {
+    "enable": false,
+    "include": ["jest"]
+  }
 }
