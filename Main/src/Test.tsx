@@ -1,10 +1,10 @@
 import { defineComponent } from "vue";
-import { RouterView } from "vue-router";
-import { useUserStore } from "@/store/User";
+// import { RouterView } from "vue-router";
+// import { useUserStore } from "@/store/User";
 // import request from "@/utils/axios";
-import { getSelector, getLastEvent, } from '@/utils/catchError';
+// import { getSelector, getLastEvent, } from '@/utils/catchError';
 import { getPerformanceTiming } from "@/utils/performance";
-import { handleJs, handlePromise } from "./__tests__";
+import { handleJs, handlePromise } from "@/monitor/baseHandlers";
 
 export default defineComponent({
     setup() {
@@ -19,12 +19,14 @@ export default defineComponent({
 
         // 监控js错误
         window.addEventListener('error', (event) => {
-            handleJs(event);
+            const errorLog = handleJs(event);
+            console.log('js ---- errorLog', errorLog);
         }, true)
 
         // 监控promise错误
         window.addEventListener('unhandledrejection', (event) => {
-            handlePromise(event);
+            const errorLog = handlePromise(event);
+            console.log('unhandledrejection ---- errorLog', errorLog);
         }, true)
 
 

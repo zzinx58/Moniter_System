@@ -10,36 +10,39 @@ interface LogType {
   position?: string
 }
 
-export const handleJs = function (event: any) {
+export const handleJs = function (event: any): LogType {
   // 阻止向上抛出控制台报错
   event.preventDefault();
-  console.log('injectJsError报错', event)
+  // console.log('injectJsError报错', event)
   // 用户最后一个交互事件
   const lastEvent = getLastEvent();
   let log: LogType
+  const { src, href, tagName } = event.target
   // 脚本加载错误
-  if (event.target && (event.target.src || event.target.href)) {
+  if (event.target && (src || href)) {
     log = {
       type: event.type,
       errorType: 'resourceError', // js报错
-      fileName: event.target.src || event.target.href,
-      tagName: event.target.tagName,
+      fileName: src || href,
+      tagName: tagName,
       selector: getSelector(event.target),
     }
   } else {
+    const { message, type, filename, lineno, colno } = event
     log = {
-      message: event.message, // 报错信息
-      type: event.type,
+      message: message, // 报错信息
+      type: type,
       errorType: 'jsError', // js报错
-      fileName: event.filename,
-      position: `${event.lineno}:${event.colno}`,
+      fileName: filename,
+      position: `${lineno}:${colno}`,
       selector: lastEvent ? getSelector((lastEvent as any).path!) : '',
     }
   }
-  console.log('injectJsError log数据', log)
+  return log
+  // console.log('injectJsError log数据', log)
 }
 
-export const handlePromise = function (event: any) {
+export const handlePromise = function (event: any): LogType {
   console.log('promise报错', event)
   // 用户最后一个交互事件
   const lastEvent = getLastEvent();
@@ -60,7 +63,7 @@ export const handlePromise = function (event: any) {
     }
     message = reason.message;
   }
-  const log = {
+  const log: LogType = {
     message, // 报错信息
     type: event.type,
     errorType: 'promiseError', // js报错
@@ -68,5 +71,6 @@ export const handlePromise = function (event: any) {
     position: `${line}:${column}`,
     selector: lastEvent ? getSelector((lastEvent as any).path!) : '',
   }
-  console.log('promise log数据', log)
+  return log
+  // console.log('promise log数据', log)
 }
