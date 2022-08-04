@@ -23,7 +23,7 @@ export function getSelector(pathsOrTarget: { parentNode: any; }) {
     } else {
         let pathArr = [];
         while (pathsOrTarget) {
-            pathArr.push(pathsOrTarget);
+            pathArr.push(pathsOrTarget as never);
             pathsOrTarget = pathsOrTarget.parentNode;
         }
         return handleSelector(pathArr);
