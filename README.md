@@ -12,3 +12,5 @@
     
 ## 第三次commit （8/1）
     集成Echarts、ElementPlus，并添加相应测试demo。代码部分：增加一个Echarts钩子
+
+    3.1 集成scss支持
