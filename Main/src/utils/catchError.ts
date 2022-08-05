@@ -19,7 +19,7 @@ export function getLastEvent() {
 
 export function getSelector(pathsOrTarget: { parentNode: any; }) {
     if (Array.isArray(pathsOrTarget)) {
-        handleSelector(pathsOrTarget);
+        return handleSelector(pathsOrTarget);
     } else {
         let pathArr = [];
         while (pathsOrTarget) {
@@ -34,13 +34,15 @@ function handleSelector(pathArr: any[]) {
         // 去除 document 和 window
         return element !== document && element !== window;
     }).map(element => {
-        const { id, className, tagName } = element;
+        let selector: string = ''
+        const { id, nodeName, className } = element;
         if (id) {
-            return `${tagName.toLowerCase()}#${id}`;
+            return `${nodeName.toLowerCase()}#${id}`;
         } else if (className && typeof className === 'string') {
-            return `${tagName.toLowerCase()}.${className}`;
+            return `${nodeName.toLowerCase()}.${className}`;
         } else {
-            return tagName.toLowerCase();
+            selector = nodeName.toLowerCase()
         }
+        return selector
     }).join(' ');
 }
