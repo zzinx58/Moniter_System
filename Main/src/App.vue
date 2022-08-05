@@ -1,15 +1,18 @@
 <template>
-  <ElButton type="primary">123456</ElButton>
-  <el-button type="danger">456789</el-button>
-  <RouterView></RouterView>
-  <OrderChart/>
+  <RouterView />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "Test1",
+  name: "App",
+  setup() {},
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+}
+</style>
