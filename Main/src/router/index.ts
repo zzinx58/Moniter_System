@@ -11,6 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "Zzinx58",
     component: () => import("@/views/Zzinx58.vue"),
   },
+    {
+    path: "/collect",
+    name: "Collect",
+    component: () => import("@/views/Collect.vue"),
+  },
 ];
 
 const router = createRouter({
