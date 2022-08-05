@@ -1,5 +1,5 @@
 <template>
-  <button data-tests="button" @click="throwError">Button</button>
+  <button data-test="button" @click="throwError">Button</button>
 </template>
   
 <script setup lang='ts'>
