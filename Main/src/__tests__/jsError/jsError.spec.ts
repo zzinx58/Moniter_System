@@ -1,5 +1,5 @@
 import { handleJs } from '@/monitor/baseHandlers';
-import Button from '@/views/jsErrorButton.vue';
+import Button from '@/test_compoents/jsErrorButton.vue';
 import { mount } from '@vue/test-utils'
 
 let event: ErrorEvent
