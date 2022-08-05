@@ -74,3 +74,21 @@ export const handlePromise = function (event: any): LogType {
   return log
   // console.log('promise log数据', log)
 }
+
+export function handleSelector(pathArr: any[]) {
+  return pathArr.reverse().filter(element => {
+    // 去除 document 和 window
+    return element !== document && element !== window;
+  }).map(element => {
+    let selector: string = ''
+    const { id, tagName, className } = element;
+    if (id) {
+      return `${tagName.toLowerCase()}#${id}`;
+    } else if (className && typeof className === 'string') {
+      return `${tagName.toLowerCase()}.${className}`;
+    } else {
+      selector = tagName.toLowerCase()
+    }
+    return selector
+  }).join(' ');
+}

@@ -1,3 +1,5 @@
+import { handleSelector } from "@/monitor/baseHandlers";
+
 let lastEvent: Event;
 [
     'click',
@@ -28,21 +30,4 @@ export function getSelector(pathsOrTarget: { parentNode: any; }) {
         }
         return handleSelector(pathArr);
     }
-}
-function handleSelector(pathArr: any[]) {
-    return pathArr.reverse().filter(element => {
-        // 去除 document 和 window
-        return element !== document && element !== window;
-    }).map(element => {
-        let selector: string = ''
-        const { id, nodeName, className } = element;
-        if (id) {
-            return `${nodeName.toLowerCase()}#${id}`;
-        } else if (className && typeof className === 'string') {
-            return `${nodeName.toLowerCase()}.${className}`;
-        } else {
-            selector = nodeName.toLowerCase()
-        }
-        return selector
-    }).join(' ');
 }
