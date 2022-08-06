@@ -1,5 +1,5 @@
 import { handleJs } from '@/monitor/baseHandlers';
-import Button from '@/test_compoents/jsErrorButton.vue';
+import Button from '@/test_compoents/ErrorButton.vue';
 import { mount } from '@vue/test-utils'
 
 let event: ErrorEvent
@@ -11,7 +11,7 @@ window.addEventListener('error', (e) => {
 
 
 describe('js Error', () => {
-  it.skip('button click => handleJs', async () => {
+  it('button click => handleJs', async () => {
     const wrapper = mount(Button as any)
     const input = wrapper.find('[data-test="button"]')
     await input.trigger('click')
