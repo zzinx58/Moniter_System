@@ -4,19 +4,19 @@
       <strong>异常数据</strong>
 
       <h2>前端异常</h2>
-      <ElButton type="success" class='hello' @click="bugjs">JS 代码执行异常</ElButton>
+      <ElButton type="success" class='hello' @click="bugJs">JS 代码执行异常</ElButton>
       <ElButton type="success" class='world' @click="bugPromise">Promise 异常</ElButton>
       <ElButton type="success" class='hi' @click="bugAsset">静态资源加载异常</ElButton>
-      <ElButton class='foursheep' @click="bugConsole">console.error 异常</ElButton>
+      <ElButton type="success" class='foursheep' @click="bugConsole">console.error 异常</ElButton>
       <ElButton class='good' @click="bugCors">跨域异常</ElButton>
 
       <br/>
 
       <h2>接口异常</h2>
-      <ElButton @click="">未响应/超时响应异常</ElButton>
-      <ElButton @click="">4xx 请求异常</ElButton>
-      <ElButton @click="">5xx 服务器异常</ElButton>
-      <ElButton @click="">权限不足</ElButton>
+      <ElButton @click="bugNoRespond">未响应/超时响应异常</ElButton>
+      <ElButton @click="bugInterface4">4xx 请求异常</ElButton>
+      <ElButton @click="bugInterface5">5xx 服务器异常</ElButton>
+      <ElButton @click="bugPowless">权限不足</ElButton>
 
       <img src="http://localhost:8888/nottrue.jpg"/>
     </div>
@@ -212,8 +212,43 @@ export default defineComponent({
 
     }
 
+    // 重写 console.error
+    {
+      var consoleError = window.console.error;
+      window.console.error = function (error) {
+        if (error != '参数有缺失') {
+          const message = error.message;
+          const stack = error.stack;
+          const url = window.location.href;
+          let row = 0, column = 0;
+          if (stack) {
+            let mres = stack.match(/\(.*?\)/g) || [];
+            let firstLine = (mres[0] || "").replace("(", "").replace(")", ""); // 获取到堆栈信息的第一条
 
-    const bugjs = () => {
+            // 根据:分隔获取行列
+            let info = firstLine.split(':')
+            row = info[info.length - 2] // 行
+            column = info[info.length - 1] // 列
+          }
+
+          // setTimeout(function () {
+          // 上报错误内容
+          let opt = {
+            url,
+            row,
+            column,
+            message,
+            stack // 错误堆栈信息
+          }
+          console.log('error捕获', opt);
+          // }, 0);
+        }
+        return consoleError.apply(console, arguments);
+      };
+    }
+
+    // ========================制造bug=============================
+    const bugJs = () => {
       window.someVar.error = 'error'
     }
     const bugPromise = function () {
@@ -225,7 +260,7 @@ export default defineComponent({
 
     }
     const bugConsole = function () {
-
+      console.error(new Error('错误捕获222'));
     }
     const bugCors = function () {
       try {
@@ -236,18 +271,44 @@ export default defineComponent({
         });
       } catch (e) {
         console.error(e);
-        window.addEventListener('error', (e) => {
-          console.log('捕获到跨域报错', e);
-        })
+        // if (ErrorEvent) {
+        //   window.dispatchEvent(new ErrorEvent('error', { e, message: e.message })) // 这里也会触发window.onerror
+        // } else {
+        //   window.onerror && window.onerror(null, null, null, null, e)
+        // }
+
+        // window.addEventListener('error', (e) => {
+        //   console.log('捕获到跨域报错', e);
+        // })
       }
+    }
+    const bugNoRespond = function () {
+
+    }
+    const bugInterface4 = function () {
+      request({
+        url: "/test",
+        method: "post",
+        data: '你好foursheep',
+      });
+    }
+    const bugInterface5 = function () {
+
+    }
+    const bugPowless = function () {
+
     }
 
     return {
-      bugjs,
+      bugJs,
       bugPromise,
       bugAsset,
       bugConsole,
       bugCors,
+      bugNoRespond,
+      bugInterface4,
+      bugInterface5,
+      bugPowless,
       getPerform,
       getClickInform,
     }
