@@ -11,7 +11,7 @@ window.addEventListener('error', (e) => {
 
 
 describe('js Error', () => {
-  it('button click => handleJs', async () => {
+  it.skip('button click => handleJs', async () => {
     const wrapper = mount(Button as any)
     const input = wrapper.find('[data-test="button"]')
     await input.trigger('click')
@@ -24,6 +24,17 @@ describe('js Error', () => {
 });
 
 
+// const bugPromise = function () {
+//   return new Promise(function (resolve, reject) {
+//     window.someVar.error = 'error';
+//   })
+// }
+
+// describe('promise', () => {
+//   it('should return a promise', async () => {
+//     expect(bugPromise).toThrow(Promise)
+//   })
+// })
 
 
 // describe('Button Cannot set property error of undefined', () => {
