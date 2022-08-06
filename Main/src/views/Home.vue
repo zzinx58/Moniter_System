@@ -3,10 +3,13 @@
     <li class="bg-indigo-300">
       <RouterLink to="/zzinx58" class="router-link">zzinx58</RouterLink>
     </li>
+
     <li class="bg-indigo-300">
-      <RouterLink to="/zzinx58" class="router-link bg-yellow-300"
-        >zzinx58</RouterLink
-      >
+      <RouterLink to="/zzinx58" class="router-link bg-yellow-300">zzinx58</RouterLink>
+    </li>
+
+    <li class="bg-indigo-300">
+      <RouterLink to="/collect">采集异常</RouterLink>
     </li>
   </ul>
 </template>
