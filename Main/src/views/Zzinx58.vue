@@ -11,6 +11,9 @@
   <h1>vite-serve-proxy测试:</h1>
   <div>全局样式测试：</div>
   <div class="test-global">123456789</div>
+  <div>全屏测试：</div>
+  <ElButton type="primary" plain @click="handleFullScreen">FullScreen</ElButton>
+  <br />
   <ElButton type="success" @click="backToApp">返回主页</ElButton>
   <OrderChart />
 </template>
@@ -19,7 +22,7 @@
 import { defineComponent } from "vue";
 import { useUserStore } from "@/store/User";
 import { useRouter } from "vue-router";
-
+import screenfull from "screenfull";
 export default defineComponent({
   name: "Test",
   setup() {
@@ -27,10 +30,18 @@ export default defineComponent({
     const userStore = useUserStore();
     const handleClick = () => userStore.updateName("zzinx");
     const backToApp = () => router.push("/");
+    const handleFullScreen = () => {
+      if (!screenfull.isEnabled) {
+        alert("当前浏览器不支持全屏操作");
+        return false;
+      }
+      screenfull.toggle();
+    };
     return {
       handleClick,
       userStore,
       backToApp,
+      handleFullScreen,
     };
   },
 });
