@@ -11,7 +11,7 @@ window.addEventListener('error', (e) => {
 
 
 describe('js Error', () => {
-  it('button click => handleJs', async () => {
+  it.skip('button click => handleJs', async () => {
     const wrapper = mount(Button as any)
     const input = wrapper.find('[data-test="button"]')
     await input.trigger('click')
