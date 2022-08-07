@@ -10,6 +10,9 @@
   </button>
   <h1>vite-serve-proxy测试:</h1>
 
+  <!-- 全局样式测试 -->
+  <button class="test">123456789</button>
+
   <ElButton type="success" @click="backToApp">返回主页</ElButton>
   <OrderChart />
 </template>
@@ -34,3 +37,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped lang="scss">
+.test {
+  @include test-bg;
+  height: $test-height;
+}
+</style>

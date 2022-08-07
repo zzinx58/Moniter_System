@@ -1,0 +1,5 @@
+$test-height: 60px;
+
+@mixin test-bg {
+    @apply bg-yellow-500;
+}
