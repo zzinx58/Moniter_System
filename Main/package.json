@@ -9,13 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^9.1.0",
     "@web-tracing/vue": "^1.5.1",
     "axios": "^0.27.2",
     "echarts": "^5.3.3",
     "element-plus": "^2.2.11",
     "pinia": "^2.0.17",
-    "sass": "^1.54.3",
-    "sass-loader": "^13.0.2",
     "vue": "^3.2.37",
     "vue-axios": "^3.4.1",
     "vue-router": "^4.1.3"
