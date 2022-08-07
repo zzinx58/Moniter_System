@@ -9,7 +9,8 @@
     ChangeName
   </button>
   <h1>vite-serve-proxy测试:</h1>
-
+  <div>全局样式测试：</div>
+  <div class="test-global">123456789</div>
   <ElButton type="success" @click="backToApp">返回主页</ElButton>
   <OrderChart />
 </template>
@@ -34,3 +35,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.test-global {
+  @include test-bg;
+  height: $test-height;
+}
+</style>

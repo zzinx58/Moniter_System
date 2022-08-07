@@ -21,3 +21,5 @@
     - 小组成员分别生产自己的pages放置于views，在router中注册，减少代码merge过程可能产生的冲突。
     - 暂时停止tsx开发的探索，专注vue-template模式开发，减少项目不确定性。
     
+## 第五次commit （8/7）
+    实践使用scss管理windicss
