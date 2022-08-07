@@ -8,8 +8,8 @@ const throwError = () => {
   window.add.error = 'error'
 } 
 const bugPromise = function () {
-  new Promise(function (resolve, reject) {
-    window.someVar.error = 'error';
+  return new Promise(function (resolve, reject) {
+    // window.someVar.error = 'error';
   })
 }
 
