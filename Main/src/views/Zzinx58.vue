@@ -14,6 +14,30 @@
   <div>全屏测试：</div>
   <ElButton type="primary" plain @click="handleFullScreen">FullScreen</ElButton>
   <br />
+  <div>xicons测试:</div>
+  <a href="https://www.xicons.org/#/" class="bg-red-300"
+    >xicons链接(clickable)</a
+  >
+  <br />
+  <Icon size="48">
+    <!-- <SettingsIcon /> -->
+    <Money16Regular />
+  </Icon>
+  <Icon size="35">
+    <Settings16Regular />
+  </Icon>
+  <IconConfigProvider size="48" color="brown">
+    <Icon>
+      <Settings16Regular />
+    </Icon>
+    <Icon>
+      <Money16Regular />
+    </Icon>
+    <Icon>
+      <AddCircle16Regular />
+    </Icon>
+  </IconConfigProvider>
+  <br />
   <ElButton type="success" @click="backToApp">返回主页</ElButton>
   <OrderChart />
 </template>
@@ -23,8 +47,21 @@ import { defineComponent } from "vue";
 import { useUserStore } from "@/store/User";
 import { useRouter } from "vue-router";
 import screenfull from "screenfull";
+import {
+  Money16Regular,
+  Settings16Regular,
+  AddCircle16Regular,
+} from "@vicons/fluent";
+import { Icon, IconConfigProvider } from "@vicons/utils";
 export default defineComponent({
   name: "Test",
+  components: {
+    Settings16Regular,
+    Money16Regular,
+    Icon,
+    IconConfigProvider,
+    AddCircle16Regular,
+  },
   setup() {
     const router = useRouter();
     const userStore = useUserStore();
