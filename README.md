@@ -23,3 +23,7 @@
     
 ## 第五次commit （8/7）
     实践使用scss管理windicss
+
+## 第六次commit (8/8)
+    web全局样式store创建，types声明，与使用测试。
+    集成pinia持久化插件，确定pinia持久化特性，从localstorage中读取历史配置。
