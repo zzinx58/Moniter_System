@@ -41,7 +41,6 @@ describe('promise', () => {
     const proButton = wrapper.find('[data-test="button1"]')
     try {
       await proButton.trigger('click')
-      console.log(1);
     } catch (e) {
       console.log(1);
     }
