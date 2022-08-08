@@ -45,7 +45,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "./src/styles/zzinx58.scss";',
+        additionalData: '@import "./src/styles/zzinx58/zzinx58.scss";',
       },
     },
   },

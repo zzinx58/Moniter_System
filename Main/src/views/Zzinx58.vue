@@ -11,9 +11,22 @@
   <h1>vite-serve-proxy测试:</h1>
   <div>全局样式测试：</div>
   <div class="test-global">123456789</div>
-  <div>全屏测试：</div>
-  <ElButton type="primary" plain @click="handleFullScreen">FullScreen</ElButton>
+  <div v-if="appConfig.actionBar.isShowFullScreen">全屏测试：</div>
+  <ElButton
+    v-if="appConfig.actionBar.isShowFullScreen"
+    type="primary"
+    plain
+    @click="handleFullScreen"
+    >FullScreen</ElButton
+  >
   <br />
+  <div>ElDrawer测试:</div>
+  <ElButton @click="opened = true" plain type="warning">open drawer</ElButton>
+  <ElDrawer size="25%" v-model="opened" title="系统设置">
+    <div>hi,there!</div>
+    <label>显示全屏按钮:</label>
+    <ElSwitch v-model="toggleActions.isShowFullScreen" />
+  </ElDrawer>
   <div>xicons测试:</div>
   <a href="https://www.xicons.org/#/" class="bg-red-300"
     >xicons链接(clickable)</a
@@ -43,7 +56,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, reactive, ref } from "vue";
 import { useUserStore } from "@/store/User";
 import { useRouter } from "vue-router";
 import screenfull from "screenfull";
@@ -53,6 +66,7 @@ import {
   AddCircle16Regular,
 } from "@vicons/fluent";
 import { Icon, IconConfigProvider } from "@vicons/utils";
+import useAppConfigStore from "@/store/AppConfig";
 export default defineComponent({
   name: "Test",
   components: {
@@ -65,6 +79,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const userStore = useUserStore();
+    const appConfig = useAppConfigStore();
     const handleClick = () => userStore.updateName("zzinx");
     const backToApp = () => router.push("/");
     const handleFullScreen = () => {
@@ -74,11 +89,17 @@ export default defineComponent({
       }
       screenfull.toggle();
     };
+    const toggleActions = reactive(appConfig.actionBar);
+    const opened = ref(false);
+
     return {
       handleClick,
       userStore,
       backToApp,
       handleFullScreen,
+      opened,
+      appConfig,
+      toggleActions,
     };
   },
 });
