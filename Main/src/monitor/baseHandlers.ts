@@ -30,8 +30,8 @@ export const handleJs = function (event: any): LogType {
   } else {
     const { message, type, filename, lineno, colno } = event
     log = {
-      message: message, // 报错信息
-      type: type,
+      message, // 报错信息
+      type,
       errorType: 'jsError', // js报错
       fileName: filename,
       position: `${lineno}:${colno}`,
@@ -51,7 +51,7 @@ export const handlePromise = function (event: any): LogType {
   let line = 0;
   let column = 0;
   // let stack = '';
-  let reason = event.reason;
+  let { reason } = event;
   if (typeof reason === 'string') {
     message = reason;
   } else if (typeof reason === 'object') {
