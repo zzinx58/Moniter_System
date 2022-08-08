@@ -11,7 +11,7 @@
     "isolatedModules": false,
     "noImplicitAny": false,
     "esModuleInterop": true,
-    "types": ["jest"],
+    "types": ["jest", "node"],
     "lib": [
       "ESNext",
       "DOM"
