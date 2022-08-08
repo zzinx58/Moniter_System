@@ -37,15 +37,16 @@ export default defineConfig({
         replacement: path.resolve("./src"),
       },
     ],
-    /*两种alias配置方式均可     
-    alias: {
-      "@": path.resolve(__dirname, "src"),
-    }, */
+    // 两种alias配置方式均可
+    // alias: {
+    //   "@": path.resolve(__dirname, "src"),
+    // },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "./src/styles/zzinx58.scss";',
+        additionalData: '@import "@/assets/styles/mixins.scss";',
+        // additionalData: '@import "./src/styles/mixins.scss";',
       },
     },
   },

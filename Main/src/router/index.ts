@@ -16,6 +16,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "Collect",
     component: () => import("@/views/Collect.vue"),
   },
+  {
+    path: "/windi",
+    name: "Windi",
+    component: () => import("@/views/Windi.vue"),
+  },
 ];
 
 const router = createRouter({

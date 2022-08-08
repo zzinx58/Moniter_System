@@ -11,6 +11,10 @@
     <li class="bg-indigo-300">
       <RouterLink to="/collect">采集异常</RouterLink>
     </li>
+
+    <li class="bg-hex-b2a8bb">
+      <RouterLink to="/windi" class="bg-red-300">Windi样式Navigation</RouterLink>
+    </li>
   </ul>
 </template>
 
