@@ -43,9 +43,11 @@ export const handleJs = function (event: any): LogType {
 }
 
 export const handlePromise = function (event: any): LogType {
-  // console.log('promise报错', event)
+  console.log('promise报错', event)
   // 用户最后一个交互事件
   const lastEvent = getLastEvent();
+  console.log("lastEvent", lastEvent);
+
   let message: string = '';
   let filename: any;
   let line = 0;
