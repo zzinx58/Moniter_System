@@ -12,7 +12,9 @@
   <div>全局样式测试：</div>
   <div class="test-global">123456789</div>
   <div v-if="appConfig.actionBar.isShowRefresh">刷新按钮测试:</div>
-  <ElButton v-if="appConfig.actionBar.isShowRefresh">Refresh</ElButton>
+  <ElButton v-if="appConfig.actionBar.isShowRefresh" @click="handleRefresh"
+    >Refresh</ElButton
+  >
   <div v-if="appConfig.actionBar.isShowFullScreen">全屏按钮与功能测试:</div>
   <ElButton
     v-if="appConfig.actionBar.isShowFullScreen"
@@ -107,6 +109,7 @@ export default defineComponent({
     const appConfig = useAppConfigStore();
     const handleClick = () => userStore.updateName("zzinx");
     const backToApp = () => router.push("/");
+    const handleRefresh = () => location.reload();
     const handleFullScreen = () => {
       if (!screenfull.isEnabled) {
         alert("当前浏览器不支持全屏操作");
@@ -125,12 +128,13 @@ export default defineComponent({
       appConfig,
       toggleDark,
       isDark,
+      handleRefresh,
     };
   },
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .test-global {
   @include test-bg;
   height: $test-height;
