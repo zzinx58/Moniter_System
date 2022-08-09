@@ -27,3 +27,8 @@
 ## 第六次commit (8/8)
     web全局样式store创建，types声明，与使用测试。
     集成pinia持久化插件，确定pinia持久化特性，从localstorage中读取历史配置。
+
+## 第七次commit (8/9)
+    添加colorPicker支持
+    添加RefreshPage逻辑支持
+    添加黑暗模式支持
