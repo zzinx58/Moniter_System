@@ -14,52 +14,63 @@
 
       <h2>接口异常</h2>
       <ElButton @click="bugNoRespond">未响应/超时响应异常</ElButton>
-      <ElButton @click="bugInterface4">4xx 请求异常</ElButton>
+      <ElButton type="warning" @click="bugInterface4">4xx 请求异常</ElButton>
       <ElButton @click="bugInterface5">5xx 服务器异常</ElButton>
       <ElButton @click="bugPowless">权限不足</ElButton>
 
-      <img src="http://localhost:8888/nottrue.jpg"/>
+      <h1>白屏异常</h1>
+      <ElButton type="info" @click="bugWhiteScreen">白屏异常</ElButton>
+
+<!--      <img src="http://localhost:8888/nottrue.jpg"/>-->
     </div>
 
     <div class="right">
       <strong>行为数据</strong><br>
       <ElButton type="success" @click="getPerform">获取性能数据</ElButton>
-      <ElButton @click="getClickInform">点击事件</ElButton>
-      <a href=""></a>
-      <a href=""></a>
-<!--      <ElButton @click="history.go">跳转</ElButton>-->
-<!--      <el-button onClick={history.back()}>Default</el-button>-->
-<!--      <el-button onClick={history.pushState('problem')}>Default</el-button>-->
-<!--      <el-button onClick={history.popstate()}>Default</el-button>-->
+      <ElButton type="success" @click="getClickInform(this.clickMountList)">点击事件</ElButton>
+      <ElButton type="warning">
+        <RouterLink to="/">路由跳转</RouterLink>
+      </ElButton>
+      <ElButton @click="getPv">PV、UV</ElButton>
+      <ElButton type="info" @click="bugHttp">HTTP 请求监控</ElButton>
+      <ElButton type="success" @click="getUserAgentInform">用户设备类型，浏览器版本，webview引擎类型</ElButton>
     </div>
+
+    <br>
+    <hr>
+    <br>
+
+<!--    <div>-->
+<!--      <strong><h1>性能监控</h1></strong>-->
+<!--      <ElButton @click="">白屏时间</ElButton>-->
+<!--      <ElButton @click="">页面资源加载耗时</ElButton>-->
+<!--      <ElButton @click="">首屏渲染耗时</ElButton>-->
+<!--      <ElButton @click="">接口请求耗时</ElButton>-->
+<!--      <ElButton @click="">收集长时间运行任务（longtasks）</ElButton>-->
+<!--    </div>-->
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { RouterView } from "vue-router";
+import {RouteLocationNormalized, RouterView, useRouter} from "vue-router";
 import { useUserStore } from "@/store/User";
 import request from "@/utils/axios";
 import { getSelector, getLastEvent, } from '@/utils/catchError';
-import { getPerformanceTiming } from "@/utils/performance";
-import {mechanismType} from "@/type";
-import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
-} from '@element-plus/icons-vue'
+import { getPageInfo, getPerformanceTiming, getUserAgent } from "@/utils/performance";
+import {mechanismType, metricsName} from "@/type";
+
 export default defineComponent({
   name: "Collect",
   setup() {
+    const router = useRouter();
     const requestTest = async () => {
       let result = await request({
         url: "/api/",
         method: "get",
       });
     };
+    const clickMountList = ['button'].map((x) => x.toLowerCase());
 
     // 监控js错误
     window.addEventListener('error', (event) => {
@@ -70,60 +81,6 @@ export default defineComponent({
     window.addEventListener('unhandledrejection', (event) => {
       handlePromise(event);
     }, true)
-
-    // 监听页面
-    {
-      const routeList = [];
-      const routeTemplate = {
-        url: window.location.pathname,
-        startTime: 0,
-        dulation: 0,
-        endTime: 0,
-      }
-      const recordNextPage = () => {
-        // 记录前一个页面的页面停留时间
-        const time = new Date().getTime();
-        routeList[routeList.length - 1].endTime = time;
-        routeList[routeList.length - 1].dulation = time - routeList[routeList.length - 1].startTime;
-        // 推一个新的页面停留记录
-        routeList.push({
-          ...routeTemplate,
-          ...{ startTime: time },
-        });
-      }
-
-      window.addEventListener('load', () => {
-        const time = new Date().getTime();
-        routeList.push({
-          ...routeTemplate,
-          ...{
-            startTime: time,
-          },
-        })
-        console.log('load', routeList);
-      })
-
-      // 单页面应用触发 replaceState 时的上报
-      window.addEventListener('replaceState', () => {
-        console.log('单页面应用触发 replaceState');
-        recordNextPage();
-      });
-      // 单页面应用触发 pushState 时的上报
-      window.addEventListener('pushState', () => {
-        console.log('单页面应用触发 pushState');
-        recordNextPage();
-      });
-      // 浏览器回退、前进行为触发的 可以自己判断是否要上报
-      window.addEventListener('popstate', () => {
-        console.log('浏览器回退或前进')
-        recordNextPage();
-      });
-
-      window.addEventListener('beforeunload', (event) => {
-        console.log('我离开页面了')
-        recordNextPage();
-      })
-    }
 
     // 判断是 JS异常、静态资源异常、还是跨域异常
     const getErrorKey = (event: ErrorEvent | Event) => {
@@ -200,16 +157,149 @@ export default defineComponent({
       console.log('promise log数据', log)
     }
 
-    // window.addEventListener('click', (event) => {
-      // console.log('event', event)
-    // })
-
     const getPerform = function () {
       getPerformanceTiming();
     }
 
-    const getClickInform = function () {
+    // 初始化 CBR 点击事件的获取和返回
+    const getClickInform = function (mountList: Array<string>): void {
+      const handler = (e: MouseEvent | any) => {
+        // 这里是根据 tagName 进行是否需要捕获事件的依据，可以根据自己的需要，额外判断id\class等
+        // 先判断浏览器支持 e.path ，从 path 里先取
+        let target = e.path?.find((x: Element) => mountList.includes(x.tagName?.toLowerCase()));
+        // 不支持 path 就再判断 target
+        target = target || (mountList.includes(e.target.tagName?.toLowerCase()) ? e.target : undefined);
+        if (!target) return;
+        const metrics = {
+          tagInfo: {
+            id: target.id,
+            classList: Array.from(target.classList),
+            tagName: target.tagName,
+            text: target.textContent,
+          },
+          // 创建时间
+          timestamp: new Date().getTime(),
+          // 页面信息
+          pageInfo: getPageInfo(),
+        };
+        // 除开商城业务外，一般不会特意上报点击行为的数据，都是作为辅助检查错误的数据存在;
+        // this.metrics.add(metricsName.CBR, metrics);
+        // 行为记录 不需要携带 完整的pageInfo
+        // delete metrics.pageInfo;
+        // 记录到行为记录追踪
+        const behavior = {
+          category: metricsName.CBR,
+          data: metrics,
+          // ...this.getExtends(),
+        };
+        console.log('点击事件 log数据', behavior)
+        const oldBehavior = localStorage.getItem('click_behavior');
+        let newBehavior = [];
+        if (oldBehavior) {
+          newBehavior = JSON.parse(oldBehavior);
+        }
+        newBehavior.push(behavior);
+        localStorage.setItem('click_behavior', JSON.stringify(newBehavior));
+        // this.breadcrumbs.push(behavior);
+      };
+      window.addEventListener(
+          'click',
+          (e) => {
+            handler(e);
+          },
+          true,
+      );
+    }
 
+    // 监听页面
+    // 进入页面时调用
+    interface routeObj {
+      referrer: RouteLocationNormalized | string, // 用户来路地址
+      url: RouteLocationNormalized | string, // 路由跳转地址
+      type: number | string, // 用户来路方式
+      startTime: number,
+      duration: number,
+      endTime: number,
+    }
+    let ddd: RouteLocationNormalized | string = window.location.pathname;
+    router.beforeEach(to => {
+      // to 代表新页面的路由对象
+      ddd = to;
+      recordBehaviors(to);
+    });
+
+    [
+      { type: 'load', value: '首页加载' },
+      { type: 'replaceState', value: '单页面应用触发 replaceState' },
+      { type: 'pushState', value: '单页面应用触发 pushState' },
+      { type: 'popstate', value: '浏览器回退或前进' },
+      { type: 'beforeunload', value: '我离开页面了' }
+    ].forEach(event => {
+      document.addEventListener(event.type, () => {
+        console.log(event.value)
+        if (event.type === 'beforeunload') {
+          // 上报
+        }
+        // recordBehaviors(ddd);
+      }, {
+        capture: true,
+        passive: true // 默认不阻止默认事件
+      });
+    })
+
+    // 记录当前页面信息，并更新上一个页面的 endTime
+    const recordBehaviors = (to: RouteLocationNormalized | string) => {
+      let routeList: routeObj[] = [];
+      let time = new Date().getTime();
+      let behaviors = localStorage.getItem('current_behavior');
+      const typeNum = window.performance?.navigation.type;
+      let type = '';
+      switch (typeNum) {
+        case 0:
+          type = '点击链接、地址栏输入、表单提交、脚本操作等';
+          break;
+        case 1:
+          type = '点击重新加载按钮、location.reload';
+          break;
+        case 2:
+          type = '点击前进或后退按钮';
+          break;
+        case 3:
+          type = '任何其他来源。即非刷新/非前进后退、非点击链接/地址栏输入/表单提交/脚本操作等';
+          break;
+      }
+      const routeTemplate: routeObj = {
+        referrer: '',
+        url: to?.path || to,
+        type,
+        startTime: time,
+        duration: 0,
+        endTime: 0,
+      }
+      if (behaviors) {
+        routeList = JSON.parse(behaviors);
+        const len = routeList.length;
+        if (len > 0) {
+          routeList[len - 1].endTime = time;
+          routeList[len - 1].duration = time - routeList[len - 1].startTime;
+          routeTemplate.referrer = routeList[len - 1].url;
+        }
+      }
+      routeList.push(routeTemplate);
+      console.log('routeList', routeList)
+      localStorage.setItem('current_behavior', JSON.stringify(routeList));
+    }
+
+    const getPv = function () {
+      const pvLog = {
+        kind: "business",
+        type: "pv",
+        startTime: performance.now(),
+        pageURL: window.location.href,
+        referrer: document.referrer,
+        uuid: 0,
+      }
+      console.log('pvLog', pvLog)
     }
 
     // 重写 console.error
@@ -298,8 +388,19 @@ export default defineComponent({
     const bugPowless = function () {
 
     }
+    const bugWhiteScreen = function () {
+
+    }
+    const bugHttp = function () {
+
+    }
+    const getUserAgentInform = function () {
+      const userAgentObj = getUserAgent();
+      console.log('userAgentObj', userAgentObj)
+    }
 
     return {
+      clickMountList,
       bugJs,
       bugPromise,
       bugAsset,
@@ -309,6 +410,10 @@ export default defineComponent({
       bugInterface4,
       bugInterface5,
       bugPowless,
+      bugWhiteScreen,
+      getPv,
+      bugHttp,
+      getUserAgentInform,
       getPerform,
       getClickInform,
     }

@@ -1,3 +1,5 @@
+import sourceMap from 'source-map';
+
 let lastEvent: Event;
 [
     'click',
@@ -69,11 +71,13 @@ originalXhrProto[method] = function (...args) {
 }
 export function interfaceError (error: any) {
     console.log('接口异常', error)
-    let { url, method, params, data } = error.config
+    let { url, method, params, data } = error.config;
+    const { language, userAgent } = navigator;
     let err_data = {
         url: error.request.responseURL,
         // timestamp,
-        // userAgent, //浏览器版本
+        language,
+        userAgent, //浏览器版本
         method,
         type: 'xhr',
         eventType: "load", //事件类型 TODO
@@ -87,3 +91,4 @@ export function interfaceError (error: any) {
     }
     console.log('接口异常 log数据', err_data)
 }
+
