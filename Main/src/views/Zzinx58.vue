@@ -23,8 +23,8 @@
   >
   <br />
   <div>样式测试：</div>
-  <div>黑暗模式测试: 当前状态是{{ isDark }}</div>
-  <ElButton class="!bg-green-200" type="warning" @click="toggleDark"
+  <div>黑暗模式测试: 当前状态是：{{ isDark }}</div>
+  <ElButton class="!bg-green-200" type="warning" @click="toggleDark()"
     >黑暗模式</ElButton
   >
   <ElButton :style="{ backgroundColor: appConfig.themeColor }"
@@ -130,7 +130,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .test-global {
   @include test-bg;
   height: $test-height;
