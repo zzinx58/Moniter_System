@@ -11,7 +11,9 @@
   <h1>vite-serve-proxy测试:</h1>
   <div>全局样式测试：</div>
   <div class="test-global">123456789</div>
-  <div v-if="appConfig.actionBar.isShowFullScreen">全屏测试：</div>
+  <div v-if="appConfig.actionBar.isShowRefresh">刷新按钮测试:</div>
+  <ElButton v-if="appConfig.actionBar.isShowRefresh">Refresh</ElButton>
+  <div v-if="appConfig.actionBar.isShowFullScreen">全屏按钮与功能测试:</div>
   <ElButton
     v-if="appConfig.actionBar.isShowFullScreen"
     type="primary"
@@ -20,12 +22,32 @@
     >FullScreen</ElButton
   >
   <br />
+  <div>样式测试：</div>
+  <div>黑暗模式测试: 当前状态是{{ isDark }}</div>
+  <ElButton class="!bg-green-200" type="warning" @click="toggleDark"
+    >黑暗模式</ElButton
+  >
+  <ElButton :style="{ backgroundColor: appConfig.themeColor }"
+    >全局样式颜色设置</ElButton
+  >
   <div>ElDrawer测试:</div>
   <ElButton @click="opened = true" plain type="warning">open drawer</ElButton>
   <ElDrawer size="25%" v-model="opened" title="系统设置">
     <div>hi,there!</div>
-    <label>显示全屏按钮:</label>
-    <ElSwitch v-model="toggleActions.isShowFullScreen" />
+    <div class="setting-item-wrapper">
+      <label>显示全屏按钮:</label>
+      <ElSwitch v-model="appConfig.actionBar.isShowFullScreen" />
+    </div>
+    <div class="setting-item-wrapper">
+      <label>显示搜索按钮:</label>
+      <ElSwitch v-model="appConfig.actionBar.isShowRefresh" />
+    </div>
+    <ElDivider />
+    <div class="setting-item-wrapper">
+      <label>主题颜色选择：</label>
+      <ElColorPicker v-model="appConfig.themeColor" />
+    </div>
+    <ElDivider />
   </ElDrawer>
   <div>xicons测试:</div>
   <a href="https://www.xicons.org/#/" class="bg-red-300"
@@ -65,6 +87,7 @@ import {
   Settings16Regular,
   AddCircle16Regular,
 } from "@vicons/fluent";
+import { useDark, useToggle } from "@vueuse/core";
 import { Icon, IconConfigProvider } from "@vicons/utils";
 import useAppConfigStore from "@/store/AppConfig";
 export default defineComponent({
@@ -77,6 +100,8 @@ export default defineComponent({
     AddCircle16Regular,
   },
   setup() {
+    const isDark = useDark();
+    const toggleDark = useToggle(isDark);
     const router = useRouter();
     const userStore = useUserStore();
     const appConfig = useAppConfigStore();
@@ -89,7 +114,6 @@ export default defineComponent({
       }
       screenfull.toggle();
     };
-    const toggleActions = reactive(appConfig.actionBar);
     const opened = ref(false);
 
     return {
@@ -99,7 +123,8 @@ export default defineComponent({
       handleFullScreen,
       opened,
       appConfig,
-      toggleActions,
+      toggleDark,
+      isDark,
     };
   },
 });
@@ -109,5 +134,9 @@ export default defineComponent({
 .test-global {
   @include test-bg;
   height: $test-height;
+}
+
+.setting-item-wrapper {
+  @apply justify-between flex;
 }
 </style>
