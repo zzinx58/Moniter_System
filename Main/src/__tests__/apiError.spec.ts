@@ -19,7 +19,7 @@ describe('api Test', () => {
       })
     })
   })
-  it.skip('200 Test', async () => {
+  it('200 Test', async () => {
     const { axios200 } = jest.requireActual('@/test_compoents/demo')
     return expect(axios200()).resolves.toMatchObject({
       status: 200,
@@ -37,7 +37,7 @@ describe('api Test', () => {
     })
   })
 
-  it.skip('404 Test', async () => {
+  it('404 Test', async () => {
     const { axios404 } = jest.requireActual('@/test_compoents/demo')
     return expect(axios404()).rejects.toThrow(/404/)
   })
