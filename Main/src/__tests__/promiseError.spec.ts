@@ -1,4 +1,4 @@
-import { handleSelector } from '@/monitor/baseHandlers';
+import { handlePromise, handleSelector } from '@/monitor/baseHandlers';
 import { getSelector } from '@/utils/catchError';
 export type PromiseRejectionEventTypes = 'rejectionhandled' | 'unhandledrejection';
 
@@ -103,43 +103,24 @@ describe('promise', () => {
     expect(handleSelector(Array.from(set) as any)).toEqual("html body div.left input.world")
   });
 
-  // it('unhandledrejection', async () => {
-  //   const myPromise = new Promise((resolve, reject) => { })
-  //   // const mouseEvents = document.createEvent("MouseEvents")
-  //   // mouseEvents.initEvent
+  it('unhandledrejection', async () => {
+    const myPromise = new Promise((resolve, reject) => { })
 
-  //   const mouseEvent = new MouseEvent('click', {
-  //     bubbles: true,
-  //     cancelable: true,
-  //   })
-  //   let myRejectionEvent = new PromiseRejectionEvent('unhandledrejection', {
-  //     promise: myPromise,
-  //     reason: {
-  //       message: "Cannot set property 'error' of undefined",
-  //       stack: "TypeError: Cannot set property 'error' of undefined\n    at http://localhost:5173/src/Test.tsx:42:30\n    at new Promise (<anonymous>)\n    at bugPromise (http://localhost:5173/src/Test.tsx:41:7)\n    at callWithErrorHandling (http://localhost:5173/node_modules/.vite/deps/chunk-V4LB3WK7.js?v=df02e3af:1369:18)\n    at callWithAsyncErrorHandling (http://localhost:5173/node_modules/.vite/deps/chunk-V4LB3WK7.js?v=df02e3af:1377:17)\n    at HTMLInputElement.invoker (http://localhost:5173/node_modules/.vite/deps/chunk-V4LB3WK7.js?v=df02e3af:7512:7)"
-  //     }
-  //   });
+    let myRejectionEvent = new PromiseRejectionEvent('unhandledrejection', {
+      promise: myPromise,
+      reason: {
+        message: "Cannot set property 'error' of undefined",
+        stack: "TypeError: Cannot set property 'error' of undefined\n    at http://localhost:5173/src/Test.tsx:42:30\n    at new Promise (<anonymous>)\n    at bugPromise (http://localhost:5173/src/Test.tsx:41:7)\n    at callWithErrorHandling (http://localhost:5173/node_modules/.vite/deps/chunk-V4LB3WK7.js?v=df02e3af:1369:18)\n    at callWithAsyncErrorHandling (http://localhost:5173/node_modules/.vite/deps/chunk-V4LB3WK7.js?v=df02e3af:1377:17)\n    at HTMLInputElement.invoker (http://localhost:5173/node_modules/.vite/deps/chunk-V4LB3WK7.js?v=df02e3af:7512:7)",
+      }
+    });
 
-  //   console.log(handlePromise(myRejectionEvent));
-  // readonly colno: number;
-  // readonly error: any;
-  // readonly filename: string;
-  // readonly lineno: number;
-  // let message: string = '';
-  // let filename: any;
-  // let line = 0;
-  // let column = 0;readonly message: string;
-  // const event = jest.fn().mockRejectedValueOnce(new ErrorEvent('unhandledrejection', {
-  //   message: 'PromiseRejectionEvent',
-  //   filename: 'promiseError.spec.ts',
-  //   lineno: 10,
-  //   colno: 10
-  // }))
-  // try {
-  //   await event()
-  // } catch (e: any) {
-  //   console.log(e.message);
-  // }
-
-  // });
+    expect(handlePromise(myRejectionEvent)).toEqual({
+      message: "Cannot set property 'error' of undefined",
+      type: 'unhandledrejection',
+      errorType: 'promiseError',
+      fileName: 'http://localhost:5173/src/Test.tsx',
+      position: '42:30',
+      selector: ''
+    })
+  });
 });
