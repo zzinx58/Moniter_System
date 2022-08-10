@@ -17,4 +17,5 @@ export default {
     isShowRefresh: true,
     isShowFullScreen: true,
   },
+  isCollapse: false,
 } as AppConfigState;
