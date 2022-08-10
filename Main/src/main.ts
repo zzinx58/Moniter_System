@@ -2,7 +2,6 @@ import { createApp } from "vue";
 // import "@/style.css";
 import "virtual:windi.css";
 import "element-plus/theme-chalk/dark/css-vars.css";
-import "element-plus/theme-chalk/src/message.scss";
 import App from "@/App.vue";
 import router from "@/router";
 import pinia from "@/store/pinia";
