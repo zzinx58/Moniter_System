@@ -18,6 +18,9 @@ const useAppConfigStore = defineStore("app-config", {
     changeTheme(theme: ThemeMode) {
       this.theme = theme;
     },
+    toggleCollapse(isCollapse: boolean) {
+      this.isCollapse = isCollapse;
+    },
   },
   persist: {
     enabled: true,

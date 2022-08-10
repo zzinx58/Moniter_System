@@ -5,6 +5,7 @@ export interface AppConfigState {
   themeColor: string;
   deviceType: DeviceType;
   sideWidth: number;
+  isCollapse: boolean;
   actionBar: {
     isShowRefresh: boolean;
     isShowFullScreen: boolean;
