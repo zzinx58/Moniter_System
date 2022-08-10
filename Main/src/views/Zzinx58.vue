@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <p>element-plus样式冲突测试:</p>
   <ElButton type="danger">nihao</ElButton>
   <p>WindiCSS测试:</p>
@@ -100,7 +101,7 @@ import { useDark, useToggle } from "@vueuse/core";
 import { Icon, IconConfigProvider } from "@vicons/utils";
 import useAppConfigStore from "@/store/AppConfig";
 export default defineComponent({
-  name: "Test",
+  name: "Zzinx58",
   components: {
     Settings16Regular,
     Money16Regular,
@@ -149,13 +150,5 @@ export default defineComponent({
 
 .setting-item-wrapper {
   @apply justify-between flex;
-}
-
-.footer-container {
-  height: $footerHeight;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
 }
 </style>
