@@ -11,18 +11,24 @@
   <h1>vite-serve-proxy测试:</h1>
   <div>全局样式测试：</div>
   <div class="test-global">123456789</div>
-  <div v-if="appConfig.actionBar.isShowRefresh">刷新按钮测试:</div>
-  <ElButton v-if="appConfig.actionBar.isShowRefresh" @click="handleRefresh"
-    >Refresh</ElButton
-  >
-  <div v-if="appConfig.actionBar.isShowFullScreen">全屏按钮与功能测试:</div>
-  <ElButton
-    v-if="appConfig.actionBar.isShowFullScreen"
-    type="primary"
-    plain
-    @click="handleFullScreen"
-    >FullScreen</ElButton
-  >
+  <div>
+    <div v-if="appConfig.actionBar.isShowRefresh">刷新按钮测试:</div>
+    <ElButton v-if="appConfig.actionBar.isShowRefresh" @click="handleRefresh"
+      >Refresh</ElButton
+    >
+  </div>
+  <div>
+    <div v-if="appConfig.actionBar.isShowFullScreen">全屏按钮与功能测试:</div>
+    <Transition name="el-zoom-in-top">
+      <ElButton
+        v-if="appConfig.actionBar.isShowFullScreen"
+        type="primary"
+        plain
+        @click="handleFullScreen"
+        >FullScreen</ElButton
+      >
+    </Transition>
+  </div>
   <br />
   <div>样式测试：</div>
   <div>黑暗模式测试: 当前状态是：{{ isDark }}</div>
@@ -76,6 +82,7 @@
   </IconConfigProvider>
   <br />
   <ElButton type="success" @click="backToApp">返回主页</ElButton>
+  <Footer />
   <OrderChart />
 </template>
 
@@ -142,5 +149,13 @@ export default defineComponent({
 
 .setting-item-wrapper {
   @apply justify-between flex;
+}
+
+.footer-container {
+  height: $footerHeight;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 </style>

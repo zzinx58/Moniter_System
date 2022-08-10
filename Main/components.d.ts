@@ -8,14 +8,19 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    Footer: typeof import('./src/views/zzinx58/footer/index.vue')['default']
+    Home: typeof import('./src/views/Home.vue')['default']
+    Layout: typeof import('./src/views/zzinx58/Layout.vue')['default']
+    Main: typeof import('./src/views/zzinx58/Main.vue')['default']
+    MainLayout: typeof import('./src/views/zzinx58/MainLayout.vue')['default']
     OrderChart: typeof import('./src/components/OrderChart.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Test: typeof import('./src/components/Test.vue')['default']
-    Zzinx58: typeof import('./src/components/Zzinx58.vue')['default']
+    Zzinx58: typeof import('./src/views/Zzinx58.vue')['default']
   }
 }
