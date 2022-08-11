@@ -4,6 +4,7 @@
       <Header />
     </div>
     <Sidebar />
+    <!-- <div :class="[appConfig.deviceType === 'mobile' && 'is-mobile']"> -->
     <div class="main">
       <RouterView></RouterView>
     </div>
@@ -36,10 +37,16 @@ export default defineComponent({
   padding-inline: 50%;
 }
 .main {
-  position: absolute;
+  position: relative;
   top: $headerHeight;
   left: 200px;
   right: 0;
   margin: 10px;
+}
+
+.is-mobile {
+  position: sticky;
+  top: $headerHeight;
+  left: 200px;
 }
 </style>

@@ -24,6 +24,14 @@
             <span>主控台</span>
           </template>
         </ElMenuItem>
+        <ElMenuItem index="/csstest">
+          <template #title>
+            <Icon>
+              <Board28Regular />
+            </Icon>
+            <span>CssTest页面</span>
+          </template>
+        </ElMenuItem>
       </ElMenu>
     </IconConfigProvider>
   </ElScrollbar>

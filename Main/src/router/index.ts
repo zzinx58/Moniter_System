@@ -21,6 +21,10 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: "csstest",
+    component: () => import("@/views/CssTest.vue"),
+  },
 ];
 
 const router = createRouter({
