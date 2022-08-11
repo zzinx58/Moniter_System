@@ -15,6 +15,7 @@
 import useAppConfigStore from "@/store/AppConfig";
 import { defineComponent } from "vue";
 import { projectName } from "@/settings";
+import { useDark } from "@vueuse/core";
 export default defineComponent({
   name: "Logo",
   props: {
@@ -33,8 +34,10 @@ export default defineComponent({
   },
   setup() {
     const appConfig = useAppConfigStore();
+    const isDark = useDark();
     return {
       appConfig,
+      isDark,
       projectName,
     };
   },
@@ -44,7 +47,7 @@ export default defineComponent({
 <style lang="scss">
 .logo-wrapper {
   height: $logoHeight;
-  @apply flex;
+  @apply flex pl-1;
   .logo-title {
     @apply my-auto ml-1;
     font-weight: bold;

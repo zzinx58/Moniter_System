@@ -24,15 +24,22 @@ export default defineComponent({
 
 <style lang="scss">
 .header-layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
   box-sizing: border-box;
   @apply flex justify-between;
   // @apply bg-red-200;
+  border-bottom: 1px solid var(--el-border-color);
   width: 100%;
   height: $headerHeight;
+  background-color: var(--el-bg-color);
   .logo-wrapper {
   }
   .right-wrapper {
-    @apply flex my-auto;
+    @apply flex my-auto justify-end;
   }
 }
 </style>

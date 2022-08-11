@@ -1,7 +1,6 @@
 <template>
-  <Header />
-  <p>element-plus样式冲突测试:</p>
   <ElButton type="danger">nihao</ElButton>
+  <p>element-plus样式冲突测试:</p>
   <p>WindiCSS测试:</p>
   <div class="bg-yellow-300 pb-10 text-green-500">Hello world!</div>
   <p>pinia测试:</p>
@@ -83,8 +82,8 @@
   </IconConfigProvider>
   <br />
   <ElButton type="success" @click="backToApp">返回主页</ElButton>
-  <Footer />
   <OrderChart />
+  <Footer />
 </template>
 
 <script lang="ts">

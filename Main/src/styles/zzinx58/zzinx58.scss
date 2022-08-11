@@ -2,7 +2,12 @@ $test-height: 60px;
 @mixin test-bg {
     @apply bg-yellow-400;
 }
-$transitionTime: 0.3s ease;
+$transitionTime: 0.6s ease;
 $footerHeight: 45px;
 $headerHeight: 64px;
 $logoHeight: 64px;
+
+::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
+}

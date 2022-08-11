@@ -54,6 +54,8 @@ export default defineComponent({
 .avatar-container:hover {
   cursor: pointer;
   color: v-bind("appConfig.themeColor");
+  border-bottom: 1px solid var(--el-border-color);
+  border-radius: 5%;
   .nick-name .tip {
     transform: rotate(180deg);
     transition: transform $transitionTime;

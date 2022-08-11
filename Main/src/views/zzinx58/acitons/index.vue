@@ -28,11 +28,11 @@ import { ElMessage } from "element-plus"; import { ElMessage } from
           <Settings16Regular @click="onShowSetting" />
         </Icon>
       </div>
-      <div class="action-item">
+      <!-- <div class="action-item">
         <Icon>
           <Settings16Regular @click="handleTest" />
         </Icon>
-      </div>
+      </div> -->
     </IconConfigProvider>
   </div>
   <Setting ref="settingRef" />
