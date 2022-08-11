@@ -1,11 +1,9 @@
-<template>
-  <RouterView />
-</template>
+<template>123</template>
 
 <script lang="ts">
 import { defineComponent, ref, reactive } from "vue";
 export default defineComponent({
-  name: "App",
+  name: "CSSTest",
   setup() {
     return {};
   },
