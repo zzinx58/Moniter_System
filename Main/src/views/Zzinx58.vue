@@ -5,7 +5,7 @@
   <p>WindiCSS测试:</p>
   <div class="bg-yellow-300 pb-10 text-green-500">Hello world!</div>
   <p>pinia测试:</p>
-  <div class="bg-indigo-300">{{ userStore.name }}</div>
+  <div class="bg-indigo-300">{{ userStore.nickName }}</div>
   <button @click="handleClick" class="bg-indigo-400 rounded-lg h-10 p-1">
     ChangeName
   </button>

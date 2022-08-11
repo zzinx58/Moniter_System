@@ -13,7 +13,7 @@ import { ElMessage } from "element-plus"; import { ElMessage } from
       />
     </div>
     <IconConfigProvider size="24">
-      <div class="action-item">
+      <div class="action-item" v-if="appConfig.actionBar.isShowRefresh">
         <Icon>
           <Refresh @click="handleRefresh" />
         </Icon>
@@ -47,7 +47,6 @@ import { Sunny, MoonNight } from "@element-plus/icons-vue";
 import { useDark, useToggle } from "@vueuse/core";
 import useAppConfigStore from "@/store/AppConfig";
 import screenfull from "screenfull";
-import { ElMessage } from "element-plus";
 export default defineComponent({
   name: "ActionItems",
   components: {
@@ -106,10 +105,10 @@ export default defineComponent({
 .action-items-wraper {
   position: relative;
   height: 100%;
-  @apply flex  justify-end bg-yellow-600;
+  @apply flex mr-3;
 
   .action-item {
-    @apply flex my-auto ml-4;
+    @apply flex my-auto ml-2;
     &:hover {
       cursor: pointer;
       color: v-bind("appConfig.themeColor");
