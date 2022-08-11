@@ -8,6 +8,8 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Acitons: typeof import('./src/views/zzinx58/acitons/index.vue')['default']
+    Avatar: typeof import('./src/views/zzinx58/avatar/index.vue')['default']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
@@ -18,6 +20,7 @@ declare module '@vue/runtime-core' {
     Header: typeof import('./src/views/zzinx58/header/index.vue')['default']
     Home: typeof import('./src/views/Home.vue')['default']
     Layout: typeof import('./src/views/zzinx58/Layout.vue')['default']
+    Logo: typeof import('./src/views/zzinx58/logo/index.vue')['default']
     Main: typeof import('./src/views/zzinx58/Main.vue')['default']
     MainLayout: typeof import('./src/views/zzinx58/MainLayout.vue')['default']
     OrderChart: typeof import('./src/components/OrderChart.vue')['default']
