@@ -8,8 +8,11 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     CSSTest: typeof import('./src/views/CSSTest.vue')['default']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    FullLogo: typeof import('./src/views/login/components/FullLogo.vue')['default']
     Layout: typeof import('./src/components/Layout.vue')['default']
     Login: typeof import('./src/views/login/index.vue')['default']
+    LoginFrom: typeof import('./src/views/login/components/LoginFrom.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
