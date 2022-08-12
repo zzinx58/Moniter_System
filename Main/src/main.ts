@@ -1,7 +1,9 @@
 import { createApp } from "vue";
+import "virtual:windi.css";
+import "element-plus/theme-chalk/dark/css-vars.css";
 import App from "@/App.vue";
 import router from "@/router/index";
-import pinia from "./store/pinia";
+import pinia from "@/store/pinia";
 const app = createApp(App);
 app.use(router);
 app.use(pinia);

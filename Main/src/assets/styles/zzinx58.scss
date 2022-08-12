@@ -1,0 +1,9 @@
+$logoHeight: 64px;
+$headerHeight: 64px;
+$footerHeight: 45px;
+
+// 滚动条样式隐藏
+::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
+}

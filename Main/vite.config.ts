@@ -35,9 +35,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        addtionalData: `
-        @use as *;
-        `,
+        additionalData: `
+          @use "./src/assets/styles/zzinx58.scss" as *;
+          `,
       },
     },
   },

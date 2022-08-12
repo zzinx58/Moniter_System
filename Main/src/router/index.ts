@@ -7,10 +7,11 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/",
-    redirect: "/index",
+    redirect: "/csstest",
   },
   {
-    path: "/cssTest",
+    path: "/csstest",
+    name: "CSSTest",
     component: () => import("@/views/CSSTest.vue"),
   },
 ];
