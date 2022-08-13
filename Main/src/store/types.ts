@@ -26,5 +26,7 @@ export interface AppConfigState {
   actionBar: {
     isShowRefresh: boolean;
     isShowFullScreen: boolean;
+    isShowDarkModeSwitch: boolean;
+    isShowSettings: boolean;
   };
 }
