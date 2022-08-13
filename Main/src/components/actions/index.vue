@@ -8,6 +8,7 @@
         inline-prompt
         :active-icon="MoonNight"
         :inactive-icon="Sunny"
+        v-if="appConfig.actionBar.isShowDarkModeSwitch"
       />
     </div>
     <IconConfigProvider size="24">
@@ -21,7 +22,7 @@
           <FullScreenMaximize16Regular @click="handleFullScreen" />
         </Icon>
       </div>
-      <div class="action-item">
+      <div class="action-item" v-if="appConfig.actionBar.isShowSettings">
         <Icon>
           <Settings16Regular @click="onShowSetting" />
         </Icon>
@@ -37,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, toRefs } from "vue";
 import { Settings16Regular, FullScreenMaximize16Regular } from "@vicons/fluent";
 import { Refresh } from "@vicons/ionicons5";
 import { Icon, IconConfigProvider } from "@vicons/utils";
@@ -82,9 +83,6 @@ export default defineComponent({
     //     message: "该浏览器不支持全屏展示",
     //   });
     // };
-    onMounted(() => {
-      appConfig.changePrimarityColor(appConfig.themeColor);
-    });
     return {
       handleRefresh,
       handleDarkMode,

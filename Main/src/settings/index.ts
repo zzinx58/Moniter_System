@@ -10,6 +10,8 @@ export default {
   actionBar: {
     isShowRefresh: true,
     isShowFullScreen: true,
+    isShowDarkModeSwitch: true,
+    isShowSettings: true,
   },
   isCollapse: false,
 } as AppConfigState;
