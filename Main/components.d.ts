@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     Avatar: typeof import('./src/components/avatar/index.vue')['default']
     CSSTest: typeof import('./src/views/CSSTest.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElButton: typeof import('element-plus/es')['ElButton']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
@@ -19,6 +20,7 @@ declare module '@vue/runtime-core' {
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     FullLogo: typeof import('./src/views/login/components/FullLogo.vue')['default']
@@ -29,6 +31,8 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Setting: typeof import('./src/components/setting/index.vue')['default']
+    Settings: typeof import('./src/components/Icons/Settings.vue')['default']
+    SettingsIcon: typeof import('./src/components/Icons/SettingsIcon.vue')['default']
     Sidebar: typeof import('./src/components/sidebar/index.vue')['default']
   }
 }

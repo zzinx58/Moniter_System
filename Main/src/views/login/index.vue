@@ -9,30 +9,29 @@
         <LoginFrom />
       </div>
     </div>
+    <div class="actions-wrapper">
+      <Actions :showDarkModeSwitch="false" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, reactive, onMounted } from "vue";
-//@ts-ignore
-import TOPOLOGY from "vanta/dist/vanta.topology.min";
+import useAppConfigStore from "@/store/AppConfig";
+import useTOPOLOGY from "@/hooks/useTOPOLOGY";
 export default defineComponent({
   name: "Login",
   setup() {
+    const appConfig = useAppConfigStore();
     onMounted(() => {
-      TOPOLOGY({
-        el: ".right",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.0,
-        minWidth: 200.0,
-        scale: 1.0,
-        scaleMobile: 1.0,
-        color: 0x628fe8,
-      });
+      useTOPOLOGY(".right");
     });
-    return {};
+    document.addEventListener("fullscreenchange", (document) => {
+      useTOPOLOGY(".right");
+    });
+    return {
+      appConfig,
+    };
   },
 });
 </script>
@@ -61,5 +60,13 @@ export default defineComponent({
     background-color: #234384;
   }
   height: 100vh;
+}
+
+.actions-wrapper {
+  position: absolute;
+  // bottom: 0px;
+  top: 10px;
+  right: 10px;
+  color: #234384;
 }
 </style>
