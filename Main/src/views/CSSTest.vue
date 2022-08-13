@@ -5,10 +5,12 @@
 </template>
 
 <script lang="ts">
+import useHandleResize from "@/hooks/useHandleResize";
 import { defineComponent, ref, reactive } from "vue";
 export default defineComponent({
   name: "CSSTest",
   setup() {
+    useHandleResize();
     return {};
   },
 });
