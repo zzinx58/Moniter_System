@@ -1,0 +1,84 @@
+<template>
+  <div class="avatar-container">
+    <div class="avatar">
+      <ElAvatar :src="userStore.avatar" shape="circle" :size="40" />
+    </div>
+    <ElDropdown :hide-on-click="false">
+      <div class="nick-name">
+        {{ userStore.nickName }}
+        <Icon class="tip">
+          <CaretDownOutline />
+        </Icon>
+      </div>
+      <template #dropdown>
+        <ElDropdownMenu>
+          <ElDropdownItem>个人中心</ElDropdownItem>
+          <ElDropdownItem>退出登录</ElDropdownItem>
+        </ElDropdownMenu>
+      </template>
+    </ElDropdown>
+  </div>
+</template>
+
+<script lang="ts">
+import useAppConfigStore from "@/store/AppConfig";
+import { useUserStore } from "@/store/User";
+import { defineComponent, ref } from "vue";
+import { CaretDownOutline } from "@vicons/ionicons5";
+import { Icon } from "@vicons/utils";
+export default defineComponent({
+  name: "Avatar",
+  components: {
+    Icon,
+    CaretDownOutline,
+  },
+  setup() {
+    const userStore = useUserStore();
+    const appConfig = useAppConfigStore();
+    const dropdown1 = ref(true);
+    return { userStore, appConfig, dropdown1 };
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+.avatar-container {
+  @apply flex items-center;
+  // @apply bg-green-500;
+  .nick-name {
+    @apply pr-3 flex pl-2 items-center;
+    // @apply bg-yellow-400;
+    .tip {
+      transform: rotate(0);
+      transition: transform $transitionTime;
+      margin-left: 4px;
+    }
+    .avatar {
+      @apply flex;
+    }
+  }
+}
+
+.avatar-container:hover {
+  cursor: pointer;
+  color: v-bind("appConfig.themeColor");
+  border-radius: 5%;
+
+  .nick-name .tip {
+    transform: rotate(180deg);
+    transition: transform $transitionTime;
+  }
+  .el-dropdown {
+    color: v-bind("appConfig.themeColor");
+  }
+}
+:global(.el-dropdown__popper) {
+  // --el-dropdown-menuItem-hover-color: #ad6;
+  --el-dropdown-menuItem-hover-color: var(--my-theme-color);
+  // --el-dropdown-menuItem-hover-color: v-bind("appConfig.themeColor");
+}
+// :global(.el-dropdown-menu__item:not(.is-disabled):focus) {
+//   color: v-bind("appConfig.themeColor");
+//   // color: #ad6;
+// }
+</style>

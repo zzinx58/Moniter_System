@@ -8,6 +8,8 @@ const useAppConfigStore = defineStore("app-config", {
   actions: {
     changePrimarityColor(color: string) {
       this.themeColor = color;
+      document.documentElement.style.setProperty("--my-theme-color", color);
+      // document.querySelector(":root")?.setAttribute("--my-theme-color", color);
     },
     changeDevice(deviceType: DeviceType) {
       this.deviceType = deviceType;

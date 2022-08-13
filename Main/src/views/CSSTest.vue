@@ -1,5 +1,5 @@
 <template>
-  <div class="header">123</div>
+  <div class="header"><Header /></div>
   <div class="main"></div>
   <div class="footer"></div>
 </template>
@@ -14,10 +14,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
-.header {
-  @apply bg-yellow-200;
-  width: 100%;
-  height: $headerHeight;
-}
-</style>
+<style scoped lang="scss"></style>

@@ -7,13 +7,28 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Actions: typeof import('./src/components/actions/index.vue')['default']
+    Avatar: typeof import('./src/components/avatar/index.vue')['default']
     CSSTest: typeof import('./src/views/CSSTest.vue')['default']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
+    ElDivider: typeof import('element-plus/es')['ElDivider']
+    ElDrawer: typeof import('element-plus/es')['ElDrawer']
+    ElDropdown: typeof import('element-plus/es')['ElDropdown']
+    ElDropDown: typeof import('element-plus/es')['ElDropDown']
+    ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+    ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     FullLogo: typeof import('./src/views/login/components/FullLogo.vue')['default']
+    Header: typeof import('./src/components/header/index.vue')['default']
     Layout: typeof import('./src/components/Layout.vue')['default']
     Login: typeof import('./src/views/login/index.vue')['default']
     LoginFrom: typeof import('./src/views/login/components/LoginFrom.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Setting: typeof import('./src/components/setting/index.vue')['default']
+    Sidebar: typeof import('./src/components/sidebar/index.vue')['default']
   }
 }

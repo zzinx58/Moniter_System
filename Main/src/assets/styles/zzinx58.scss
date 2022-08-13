@@ -1,9 +1,13 @@
 $logoHeight: 64px;
 $headerHeight: 64px;
 $footerHeight: 45px;
+$transitionTime: 0.6s ease;
 
 // 滚动条样式隐藏
 ::-webkit-scrollbar {
     display: none;
     /* Chrome Safari */
+}
+:root {
+    --my-theme-color: #409eff;
 }
