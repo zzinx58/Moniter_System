@@ -9,14 +9,19 @@
 <script lang="ts">
 import useHandleResize from "@/hooks/useHandleResize";
 import useTOPOLOGY from "@/hooks/useTOPOLOGY";
-import { defineComponent, ref, reactive, onMounted } from "vue";
+import {
+  defineComponent,
+  ref,
+  reactive,
+  onMounted,
+  onUpdated,
+  onUnmounted,
+} from "vue";
 export default defineComponent({
   name: "CSSTest",
   setup() {
     useHandleResize();
-    onMounted(() => {
-      useTOPOLOGY(".page-container");
-    });
+    useTOPOLOGY(".page-container");
     return {};
   },
 });

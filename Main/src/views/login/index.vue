@@ -16,19 +16,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted } from "vue";
+import {
+  defineComponent,
+  ref,
+  reactive,
+  onMounted,
+  onBeforeUnmount,
+} from "vue";
 import useAppConfigStore from "@/store/AppConfig";
 import useTOPOLOGY from "@/hooks/useTOPOLOGY";
 export default defineComponent({
   name: "Login",
   setup() {
     const appConfig = useAppConfigStore();
-    onMounted(() => {
-      useTOPOLOGY(".right");
-    });
-    document.addEventListener("fullscreenchange", (document) => {
-      useTOPOLOGY(".right");
-    });
+    useTOPOLOGY(".right");
     return {
       appConfig,
     };
