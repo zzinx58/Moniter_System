@@ -30,7 +30,11 @@
     <ElDivider>菜单设置</ElDivider>
     <div class="setting-item-wrapper">
       <label>菜单宽度:</label>
-      <ElInputNumber v-model="appConfig.sideWidth" size="small" />
+      <ElInputNumber
+        v-model="appConfig.sideWidth"
+        @change="appConfig.changeSideWidth(appConfig.sideWidth)"
+        size="small"
+      />
     </div>
   </ElDrawer>
 </template>
