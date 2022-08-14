@@ -1,6 +1,7 @@
 import { ThemeMode } from "@/store/types";
 //@ts-ignore
 import TOPOLOGY from "vanta/dist/vanta.topology.min";
+// import TOPOLOGY from "vanta/src/vanta.topology";
 import { onMounted, onBeforeUnmount } from "vue";
 /**  elementName with CSS selector */
 export default function useTOPOLOGY(elementName: string, mode?: ThemeMode) {
