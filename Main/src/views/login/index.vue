@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <div class="right"></div>
-    <div class="form-container">
+    <div class="form-container animate__animated animate__zoomIn">
       <div class="logo-wrapper">
         <FullLogo />
       </div>
@@ -47,8 +47,8 @@ export default defineComponent({
   transform: translate(-50%, -50%);
   background: rgba(15, 29, 58, 0.85);
   box-shadow: 8px 8px 32px 8px rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }

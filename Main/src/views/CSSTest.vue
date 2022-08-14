@@ -1,6 +1,7 @@
 <template>
   <div class="page-container">
     <div class="header"><Header /></div>
+    <div class="side-bar"><Sidebar /></div>
     <div class="main"></div>
     <div class="footer"></div>
   </div>

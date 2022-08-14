@@ -1,5 +1,5 @@
 <template>
-  <div class="header-layout">
+  <div class="header-layout animate__animated animate__slideInDown">
     <div class="collapse-menu"></div>
     <div class="right-wrapper">
       <Actions v-if="appConfig.deviceType !== 'mobile'" />
@@ -24,14 +24,13 @@ export default defineComponent({
 .header-layout {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   z-index: 999;
   box-sizing: border-box;
   @apply flex justify-between;
   // @apply bg-red-200;
   border-bottom: 1px solid var(--el-border-color);
-  width: 100%;
+  width: calc(100vw - var(--menu-width));
   height: $headerHeight;
   background-color: var(--el-bg-color);
   .logo-wrapper {
@@ -40,5 +39,8 @@ export default defineComponent({
     @apply flex justify-end;
     height: $headerHeight;
   }
+}
+.animate__animated.animate__slideInDown {
+  --animate-duration: 1.5s;
 }
 </style>
