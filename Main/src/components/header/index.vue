@@ -23,6 +23,7 @@ import useAppConfigStore from "@/store/AppConfig";
 import { defineComponent } from "vue";
 import { Icon, IconConfigProvider } from "@vicons/utils";
 import { LayoutSidebarLeftCollapse } from "@vicons/tabler";
+import { useSlideInLeft } from "@/hooks/useAnimate";
 export default defineComponent({
   name: "Header",
   components: {
@@ -32,6 +33,7 @@ export default defineComponent({
   },
   setup() {
     const appConfig = useAppConfigStore();
+    useSlideInLeft(".header-container");
     const toggleCollapse = () => {
       appConfig.isCollapse = !appConfig.isCollapse;
     };

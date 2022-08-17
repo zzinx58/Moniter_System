@@ -13,17 +13,7 @@
         :class="[appConfig.isFixedHeader ? 'fixed-header' : '']"
       >
         <div class="temp-block"></div>
-        <Main />
-        <Main />
-        <Main />
-        <Main />
-        <Main />
-        <Main />
-        <Main />
-        <Main />
-        <Main />
-        <Main />
-        <Main />
+        <MainLayout />
       </div>
     </div>
   </div>
@@ -33,7 +23,7 @@
 import useHandleResize from "@/hooks/useHandleResize";
 import useTOPOLOGY from "@/hooks/useTOPOLOGY";
 import useAppConfigStore from "@/store/AppConfig";
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref, reactive, onMounted } from "vue";
 export default defineComponent({
   name: "Layout",
   setup() {
@@ -66,7 +56,6 @@ export default defineComponent({
   // fixed-header style1
   overflow-y: auto;
   position: relative;
-
   z-index: -10;
   height: calc(100vh - $headerHeight);
 }
