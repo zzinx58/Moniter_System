@@ -1,6 +1,6 @@
 <template>
   <ElDrawer
-    size="25%"
+    size="250px"
     v-model="appConfig.isDrawerOpen"
     title="系统设置"
     :append-to-body="true"

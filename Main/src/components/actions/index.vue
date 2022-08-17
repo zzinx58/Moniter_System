@@ -1,7 +1,9 @@
 <template>
   <div
     class="action-items-wraper"
-    :class="[appConfig.isCollapse ? 'is-close' : 'is-open']"
+    :class="[
+      appConfig.deviceType === 'mobile' ? 'close-status' : 'open-status',
+    ]"
   >
     <div class="action-item">
       <ElSwitch
@@ -105,11 +107,11 @@ export default defineComponent({
   }
 }
 
-.is-open {
+.open-status {
   transform: translateY(0);
   transition: transform 1s;
 }
-.is-close {
+.close-status {
   transform: translateY(-100%);
   transition: transform 1s;
 }

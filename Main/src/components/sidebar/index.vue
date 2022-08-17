@@ -24,7 +24,6 @@ export default defineComponent({
 .sidebar-container {
   @apply;
   //   @apply bg-blue-300;
-  @apply float-left;
   z-index: 999;
   width: $menuWidth;
   height: 100vh;
