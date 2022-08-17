@@ -22,6 +22,15 @@
       <label>固定导航栏:</label>
       <ElSwitch v-model="appConfig.isFixedHeader" />
     </div>
+    <div class="setting-item-wrapper">
+      <ElButton
+        @click="handleReset"
+        type="danger"
+        class="mx-auto"
+        :style="{ width: 100 + '%' }"
+        >重置所有设置</ElButton
+      >
+    </div>
     <ElDivider>主题颜色</ElDivider>
     <div class="setting-item-wrapper">
       <label>主题颜色选择：</label>
@@ -58,11 +67,18 @@ export default defineComponent({
     function openDrawer() {
       opened.value = true;
     }
+    const handleReset = () => {
+      appConfig.$reset();
+      ElMessage.success("系统设置初始化成功，准备刷新页面");
+      setInterval(() => {
+        location.reload();
+      }, 1000);
+    };
     onMounted(() => {
       appConfig.changePrimarityColor(appConfig.themeColor);
       appConfig.changeSideWidth(appConfig.sideWidth);
     });
-    return { opened, openDrawer, appConfig, predefineColors };
+    return { opened, openDrawer, appConfig, predefineColors, handleReset };
   },
 });
 </script>
