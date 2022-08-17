@@ -32,6 +32,7 @@ export default defineComponent({
     const appConfig = useAppConfigStore();
     onMounted(() => {
       useSlideInDown("#header-wrapper", "1.5s");
+      useSlideInDown(".action-items-wraper", "1.5s");
       useSlideInLeft("#sidebar-wrapper", "1s");
     });
     useTOPOLOGY("#topology-container");

@@ -1,5 +1,8 @@
 <template>
-  <div class="action-items-wraper">
+  <div
+    class="action-items-wraper"
+    :class="[appConfig.isCollapse ? 'is-close' : 'is-open']"
+  >
     <div class="action-item">
       <ElSwitch
         size="large"
@@ -60,7 +63,8 @@ export default defineComponent({
     const darkMode = ref(isDark);
     const settingRef = ref();
     const onShowSetting = () => {
-      settingRef.value.openDrawer();
+      // settingRef.value.openDrawer();
+      appConfig.isDrawerOpen = !appConfig.isDrawerOpen;
     };
     const handleFullScreen = () => {
       if (!screenfull.isEnabled) {
@@ -72,15 +76,6 @@ export default defineComponent({
       }
       screenfull.toggle();
     };
-    // const handleTest = () => {
-    //   ElMessage({
-    //     type: "error",
-    //     message: "该浏览器不支持全屏展示",
-    //   });
-    // };
-    onMounted(() => {
-      console.log(settingRef.value);
-    });
     return {
       handleRefresh,
       handleDarkMode,
@@ -92,7 +87,6 @@ export default defineComponent({
       onShowSetting,
       settingRef,
       handleFullScreen,
-      // handleTest,
     };
   },
 });
@@ -109,5 +103,14 @@ export default defineComponent({
       color: v-bind("appConfig.themeColor");
     }
   }
+}
+
+.is-open {
+  transform: translateY(0);
+  transition: transform 1s;
+}
+.is-close {
+  transform: translateY(-100%);
+  transition: transform 1s;
 }
 </style>

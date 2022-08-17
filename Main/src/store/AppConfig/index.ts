@@ -26,6 +26,9 @@ const useAppConfigStore = defineStore("app-config", {
     toggleCollapse(isCollapse: boolean) {
       this.isCollapse = isCollapse;
     },
+    toggleOpenSettingsDrawer(isDrawerOpen: boolean) {
+      this.isDrawerOpen = isDrawerOpen;
+    },
   },
   persist: {
     enabled: true,

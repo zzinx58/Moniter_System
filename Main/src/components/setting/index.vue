@@ -1,5 +1,10 @@
 <template>
-  <ElDrawer size="25%" v-model="opened" title="系统设置" :append-to-body="true">
+  <ElDrawer
+    size="25%"
+    v-model="appConfig.isDrawerOpen"
+    title="系统设置"
+    :append-to-body="true"
+  >
     <ElDivider>按钮显示</ElDivider>
     <div class="setting-item-wrapper">
       <label>显示搜索按钮:</label>

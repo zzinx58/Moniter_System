@@ -37,7 +37,7 @@ export default defineComponent({
     const handleCommand = (command: string | number | object) => {
       switch (command) {
         case "b":
-          console.log("zzx58");
+          appConfig.isDrawerOpen = true;
       }
     };
     const userStore = useUserStore();

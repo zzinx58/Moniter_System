@@ -30,4 +30,5 @@ export interface AppConfigState {
     isShowSettings: boolean;
   };
   isFixedHeader: boolean;
+  isDrawerOpen: boolean;
 }
