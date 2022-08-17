@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts">
+import { useSlideInDown, useSlideInLeft } from "@/hooks/useAnimate";
 import useHandleResize from "@/hooks/useHandleResize";
 import useTOPOLOGY from "@/hooks/useTOPOLOGY";
 import useAppConfigStore from "@/store/AppConfig";
@@ -29,6 +30,10 @@ export default defineComponent({
   setup() {
     useHandleResize();
     const appConfig = useAppConfigStore();
+    onMounted(() => {
+      useSlideInDown("#header-wrapper", "1.5s");
+      useSlideInLeft("#sidebar-wrapper", "1s");
+    });
     useTOPOLOGY("#topology-container");
     return { appConfig };
   },
