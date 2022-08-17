@@ -1,0 +1,15 @@
+// 滚动条样式隐藏
+::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
+}
+
+:root {
+    --my-theme-color: #409eff;
+    --menu-width: 210px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
