@@ -8,6 +8,11 @@
         >zzinx58</RouterLink
       >
     </li>
+    <li class="bg-indigo-300">
+      <RouterLink to="/show" 
+        >数据展示区</RouterLink
+      >
+    </li>
   </ul>
 </template>
 

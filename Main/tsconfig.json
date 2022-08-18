@@ -27,7 +27,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
-  ],
+, "src/views/throttle.ts"  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
