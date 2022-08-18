@@ -28,6 +28,10 @@
       <ElSwitch v-model="appConfig.isFixedHeader" />
     </div>
     <div class="setting-item-wrapper">
+      <label>显示FPS:</label>
+      <ElSwitch v-model="appConfig.devOptions.showFPS" />
+    </div>
+    <div class="setting-item-wrapper">
       <ElButton
         @click="handleReset"
         type="danger"

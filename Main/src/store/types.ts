@@ -31,4 +31,7 @@ export interface AppConfigState {
   };
   isFixedHeader: boolean;
   isDrawerOpen: boolean;
+  devOptions: {
+    showFPS: boolean;
+  };
 }

@@ -6,6 +6,7 @@
     ]"
   >
     <div class="action-item">
+      <div v-if="appConfig.devOptions.showFPS">fps:{{ fps }}</div>
       <ElSwitch
         size="large"
         @click="handleDarkMode()"
@@ -43,7 +44,7 @@ import { Settings16Regular, FullScreenMaximize16Regular } from "@vicons/fluent";
 import { Refresh } from "@vicons/ionicons5";
 import { Icon, IconConfigProvider } from "@vicons/utils";
 import { Sunny, MoonNight } from "@element-plus/icons-vue";
-import { useDark, useToggle } from "@vueuse/core";
+import { useDark, useFps, useToggle } from "@vueuse/core";
 import useAppConfigStore from "@/store/AppConfig";
 import screenfull from "screenfull";
 export default defineComponent({
@@ -60,6 +61,7 @@ export default defineComponent({
     const handleRefresh = () => {
       location.reload();
     };
+    const fps = useFps();
     const isDark = useDark();
     const handleDarkMode = useToggle(isDark);
     const darkMode = ref(isDark);
@@ -89,6 +91,7 @@ export default defineComponent({
       onShowSetting,
       settingRef,
       handleFullScreen,
+      fps,
     };
   },
 });

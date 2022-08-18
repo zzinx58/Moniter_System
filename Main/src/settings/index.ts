@@ -16,4 +16,7 @@ export default {
   isCollapse: false,
   isFixedHeader: false,
   isDrawerOpen: false,
+  devOptions: {
+    showFPS: false,
+  },
 } as AppConfigState;
