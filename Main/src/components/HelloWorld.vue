@@ -1,15 +1,47 @@
 <script setup lang="ts">
-import { useSlideInUp } from "@/hooks/useAnimate";
+import { inject, reactive, Ref, toRaw } from "vue";
 import { ref } from "vue";
-useSlideInUp(".test-anime");
-defineProps<{ msg: string }>();
+import { ErrorEventItemType } from "./eventPreview/types";
 const count = ref(0);
+const provideTest = inject("provideTest");
+
+//Test-Start(大型Bug现场)
+const props = defineProps<{
+  msg: string;
+  erroreventitemtestone: ErrorEventItemType;
+  // erroreventitemtestone: Ref<ErrorEventItemType>;
+  //加了Ref外框反而取不了值,被提示要加.value,之后虽然有提示，但是会报错。
+}>();
+const ErrorEventItemTestTwo = ref();
+ErrorEventItemTestTwo.value = inject("ErrorEventItemTestTwo");
+// ErrorEventItemTestTwo.value = inject<ErrorEventItemType>(
+//   "ErrorEventItemTestTwo"
+// );
+const ErrorEventItemTestThree = ref();
+const ReactiveThree = reactive(ErrorEventItemTestThree);
+// const ErrorEventItemTestThreePromise = inject("ErrorEventItemTestThree") as ErrorEventItemType;
+const ErrorEventItemTestThreePromise = inject(
+  "ErrorEventItemTestThree"
+) as Promise<ErrorEventItemType>;
+// as Promise<ErrorEventItemType>
+ErrorEventItemTestThreePromise.then((res) => {
+  ErrorEventItemTestThree.value = res;
+});
+// const resultData = async function getResultData() {
+//   console.log(await ErrorEventItem);
+//   return await ErrorEventItem;
+// };
+// resultData();
 </script>
 
 <template>
   <div class="test-anime">
-    <h1>{{ msg }}</h1>
-
+    <h1>{{ props.msg }}</h1>
+    <div>{{ provideTest }}</div>
+    <!-- <div>{{ props.erroreventitemtestone }}</div>
+    <div>{{ ErrorEventItemTestTwo }}</div> -->
+    <div>{{ ErrorEventItemTestThree }}</div>
+    <!-- <div>{{ ReactiveThree }}</div> -->
     <div class="card">
       <button type="button" @click="count++">count is {{ count }}</button>
       <p>

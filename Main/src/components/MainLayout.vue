@@ -1,8 +1,5 @@
 <template>
   <Main />
-  <Main />
-  <Main />
-  <Main />
   <Footer />
 </template>
 
