@@ -23,6 +23,7 @@
     },
     "types": [
       "pinia-plugin-persist",
+      "vite/client",
     ]
   },
   "include": [
