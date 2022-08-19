@@ -12,7 +12,7 @@
       </div>
       <template #dropdown>
         <ElDropdownMenu>
-          <ElDropdownItem>个人中心</ElDropdownItem>
+          <ElDropdownItem command="a">团队管理</ElDropdownItem>
           <ElDropdownItem command="b"><SettingsIcon />系统设置</ElDropdownItem>
           <ElDropdownItem>退出登录</ElDropdownItem>
         </ElDropdownMenu>
@@ -27,6 +27,7 @@ import { useUserStore } from "@/store/User";
 import { defineComponent, ref } from "vue";
 import { CaretDownOutline } from "@vicons/ionicons5";
 import { Icon } from "@vicons/utils";
+import { useRouter } from "vue-router";
 export default defineComponent({
   name: "Avatar",
   components: {
@@ -34,10 +35,13 @@ export default defineComponent({
     CaretDownOutline,
   },
   setup() {
+    const router = useRouter();
     const handleCommand = (command: string | number | object) => {
       switch (command) {
         case "b":
           appConfig.isDrawerOpen = true;
+        case "a":
+          router.push("/index/teamManage");
       }
     };
     const userStore = useUserStore();

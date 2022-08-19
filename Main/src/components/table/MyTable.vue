@@ -1,15 +1,12 @@
 <template>
-  <Main />
-  <Main />
-  <Main />
-  <Main />
-  <Footer />
+  <div></div>
 </template>
 
 <script lang="ts">
+import { DefaultProps } from "element-plus";
 import { defineComponent, ref, reactive } from "vue";
 export default defineComponent({
-  name: "MainLayout",
+  name: "MyTable",
   setup() {
     return {};
   },

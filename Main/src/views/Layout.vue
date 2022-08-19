@@ -24,15 +24,14 @@ import { useSlideInDown, useSlideInLeft } from "@/hooks/useAnimate";
 import useHandleResize from "@/hooks/useHandleResize";
 import useTOPOLOGY from "@/hooks/useTOPOLOGY";
 import useAppConfigStore from "@/store/AppConfig";
-import { defineComponent, ref, reactive, onMounted } from "vue";
+import { defineComponent, onMounted } from "vue";
 export default defineComponent({
   name: "Layout",
   setup() {
     useHandleResize();
     const appConfig = useAppConfigStore();
     onMounted(() => {
-      useSlideInDown("#header-wrapper", "1.5s");
-      useSlideInDown(".action-items-wraper", "1.5s");
+      useSlideInDown("#main-layout", "1.5s");
       useSlideInLeft("#sidebar-wrapper", "1s");
     });
     useTOPOLOGY("#topology-container");

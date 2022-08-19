@@ -23,6 +23,16 @@ const routes: Array<RouteRecordRaw> = [
         name: "HelloWorld",
         component: () => import("@/components/HelloWorld.vue"),
       },
+      {
+        path: "errorPreview",
+        name: "ErrorPreview",
+        component: () => import("@/views/ErrorPreview.vue"),
+      },
+      {
+        path: "test",
+        name: "Test",
+        component: () => import("@/views/Test.vue"),
+      },
     ],
   },
 ];

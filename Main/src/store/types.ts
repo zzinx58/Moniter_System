@@ -1,6 +1,6 @@
 export enum ThemeMode {
   LIGHT = "light",
-  Dark = "dark",
+  DARK = "dark",
 }
 export enum DeviceType {
   PC = "pc",
@@ -34,4 +34,5 @@ export interface AppConfigState {
   devOptions: {
     showFPS: boolean;
   };
+  showDevOptions: boolean;
 }

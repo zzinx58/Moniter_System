@@ -6,7 +6,17 @@
     ]"
   >
     <div class="action-item">
-      <div v-if="appConfig.devOptions.showFPS">fps:{{ fps }}</div>
+      <div class="devOptions flex" v-if="appConfig.showDevOptions">
+        <div class="action-item" v-if="appConfig.devOptions.showFPS">
+          fps:{{ fps }}
+        </div>
+        <div class="action-item">
+          {{ appConfig.deviceType }}
+        </div>
+        <div class="action-item">
+          {{ appConfig.isCollapse }}
+        </div>
+      </div>
       <ElSwitch
         size="large"
         @click="handleDarkMode()"

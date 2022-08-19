@@ -26,6 +26,22 @@
             <span>测试页面</span>
           </template>
         </ElMenuItem>
+        <ElMenuItem index="/index/errorPreview">
+          <template #title>
+            <Icon>
+              <Board28Regular />
+            </Icon>
+            <span>错误预览页面</span>
+          </template>
+        </ElMenuItem>
+        <ElMenuItem index="/index/test">
+          <template #title>
+            <Icon>
+              <Board28Regular />
+            </Icon>
+            <span>Test页面</span>
+          </template>
+        </ElMenuItem>
       </ElMenu>
     </IconConfigProvider>
   </ElScrollbar>

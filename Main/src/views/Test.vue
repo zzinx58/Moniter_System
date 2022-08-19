@@ -1,17 +1,17 @@
 <template>
-  <Main />
-  <Main />
-  <Main />
-  <Main />
-  <Footer />
+  <div></div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, reactive } from "vue";
 export default defineComponent({
-  name: "MainLayout",
+  name: "Test",
   setup() {
-    return {};
+    const testRef = ref({
+      name: "123",
+      age: "1234",
+    });
+    return { testRef };
   },
 });
 </script>

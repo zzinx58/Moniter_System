@@ -32,6 +32,10 @@
       <ElSwitch v-model="appConfig.devOptions.showFPS" />
     </div>
     <div class="setting-item-wrapper">
+      <label>显示DevOptions:</label>
+      <ElSwitch v-model="appConfig.showDevOptions" />
+    </div>
+    <div class="setting-item-wrapper">
       <ElButton
         @click="handleReset"
         type="danger"
