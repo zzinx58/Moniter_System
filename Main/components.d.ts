@@ -52,7 +52,7 @@ declare module '@vue/runtime-core' {
     Setting: typeof import('./src/components/setting/index.vue')['default']
     SettingsIcon: typeof import('./src/components/Icons/SettingsIcon.vue')['default']
     Sidebar: typeof import('./src/components/sidebar/index.vue')['default']
-    SourceEventPreview: typeof import('./src/components/eventPreview/SourceEventPreview.vue')['default']
+    SourceEventPreview: typeof import('./src/views/eventPreview/SourceEventPreview.vue')['default']
     TeamManage: typeof import('./src/views/TeamManage.vue')['default']
     Test: typeof import('./src/views/Test.vue')['default']
   }

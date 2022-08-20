@@ -1,4 +1,4 @@
-import { ErrorEventItemType } from "./../../components/eventPreview/types";
+import { ErrorEventItemType } from "../../views/eventPreview/types";
 import { defineStore } from "pinia";
 
 const useErrorEventItemStore = defineStore("error-event-item", {
