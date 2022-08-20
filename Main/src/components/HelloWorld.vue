@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { inject, reactive, Ref, toRaw } from "vue";
+import useErrorEventItemStore from "@/store/ErrorEventList";
+import { reject } from "lodash";
+import { computed, inject, reactive, Ref, toRaw } from "vue";
 import { ref } from "vue";
 import { ErrorEventItemType } from "./eventPreview/types";
 const count = ref(0);
 const provideTest = inject("provideTest");
 
-//Test-Start(大型Bug现场)
+//Test-Start(大型DeBug现场)
 const props = defineProps<{
   msg: string;
   erroreventitemtestone: ErrorEventItemType;
@@ -18,30 +20,45 @@ ErrorEventItemTestTwo.value = inject("ErrorEventItemTestTwo");
 //   "ErrorEventItemTestTwo"
 // );
 const ErrorEventItemTestThree = ref();
-const ReactiveThree = reactive(ErrorEventItemTestThree);
+// const ReactiveThree = reactive(ErrorEventItemTestThree);
 // const ErrorEventItemTestThreePromise = inject("ErrorEventItemTestThree") as ErrorEventItemType;
 const ErrorEventItemTestThreePromise = inject(
   "ErrorEventItemTestThree"
 ) as Promise<ErrorEventItemType>;
 // as Promise<ErrorEventItemType>
-ErrorEventItemTestThreePromise.then((res) => {
-  ErrorEventItemTestThree.value = res;
+
+// ErrorEventItemTestThreePromise.then((res) => {
+//   ErrorEventItemTestThree.value = res;
+// });
+const tempData = new Promise((resolve, reject) => {
+  ErrorEventItemTestThreePromise.then((res) => {
+    ErrorEventItemTestThree.value = res;
+    // resolve(res);
+    resolve(res);
+    reject("problem");
+  });
 });
-// const resultData = async function getResultData() {
-//   console.log(await ErrorEventItem);
-//   return await ErrorEventItem;
-// };
-// resultData();
+async function test() {
+  const temp = (await tempData) as ErrorEventItemType;
+  const testRef = reactive(temp);
+  return testRef;
+}
+const errorEventItemStore = useErrorEventItemStore();
+// const final = (await test()).deviceInfo;
+// const final2 = (await test()).locationInfo;
 </script>
 
 <template>
   <div class="test-anime">
     <h1>{{ props.msg }}</h1>
     <div>{{ provideTest }}</div>
-    <!-- <div>{{ props.erroreventitemtestone }}</div>
-    <div>{{ ErrorEventItemTestTwo }}</div> -->
-    <div>{{ ErrorEventItemTestThree }}</div>
-    <!-- <div>{{ ReactiveThree }}</div> -->
+    <!-- <div>{{ final }}</div>
+    <div>{{ final2 }}</div> -->
+    <!-- <div>{{ computedData }}</div> -->
+    <!-- <div>{{ props.erroreventitemtestone.deviceInfo }}</div> -->
+    <!-- <div>{{ ErrorEventItemTestTwo }}</div> -->
+    <!-- <div>{{ ErrorEventItemTestThree["sourceInfo"] }}</div> -->
+    <div>{{ errorEventItemStore.ErrorEventItemInstance.deviceInfo }}</div>
     <div class="card">
       <button type="button" @click="count++">count is {{ count }}</button>
       <p>

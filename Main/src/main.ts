@@ -7,7 +7,10 @@ import "@/assets/styles/MyCSS.css";
 import App from "@/App.vue";
 import router from "@/router/index";
 import pinia from "@/store/pinia";
+import "../mock";
 const app = createApp(App);
+//https://cn.vuejs.org/guide/components/provide-inject.html#working-with-reactivity
+// app.config.unwrapInjectedRef = true;
 app.use(router);
 app.use(pinia);
 app.mount("#app");

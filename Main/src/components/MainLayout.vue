@@ -1,4 +1,14 @@
 <template>
+  <!-- <Suspense>
+    <template #default>
+      <Main />
+    </template>
+    <template #fallback>
+      <div class="flex">
+        <span class="mx-auto">Loading...</span>
+      </div>
+    </template>
+  </Suspense> -->
   <Main />
   <Footer />
 </template>
