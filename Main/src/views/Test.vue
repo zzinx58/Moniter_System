@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import useErrorEventItemStore from "@/store/ErrorEventList";
+import useErrorEventItemStore from "@/store/ErrorEventItem";
 import axios from "axios";
 import { defineComponent, ref, reactive, provide, onMounted } from "vue";
 export default defineComponent({

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import useErrorEventItemStore from "@/store/ErrorEventList";
+import useErrorEventItemStore from "@/store/ErrorEventItem";
 import { reject } from "lodash";
 import { computed, inject, reactive, Ref, toRaw } from "vue";
 import { ref } from "vue";
-import { ErrorEventItemType } from "./eventPreview/types";
+import { ErrorEventItemType } from "@/views/eventPreview/types";
 const count = ref(0);
 const provideTest = inject("provideTest");
 
@@ -14,35 +14,35 @@ const props = defineProps<{
   // erroreventitemtestone: Ref<ErrorEventItemType>;
   //加了Ref外框反而取不了值,被提示要加.value,之后虽然有提示，但是会报错。
 }>();
-const ErrorEventItemTestTwo = ref();
-ErrorEventItemTestTwo.value = inject("ErrorEventItemTestTwo");
+// const ErrorEventItemTestTwo = ref();
+// ErrorEventItemTestTwo.value = inject("ErrorEventItemTestTwo");
 // ErrorEventItemTestTwo.value = inject<ErrorEventItemType>(
 //   "ErrorEventItemTestTwo"
 // );
-const ErrorEventItemTestThree = ref();
+// const ErrorEventItemTestThree = ref();
 // const ReactiveThree = reactive(ErrorEventItemTestThree);
 // const ErrorEventItemTestThreePromise = inject("ErrorEventItemTestThree") as ErrorEventItemType;
-const ErrorEventItemTestThreePromise = inject(
-  "ErrorEventItemTestThree"
-) as Promise<ErrorEventItemType>;
+// const ErrorEventItemTestThreePromise = inject(
+//   "ErrorEventItemTestThree"
+// ) as Promise<ErrorEventItemType>;
 // as Promise<ErrorEventItemType>
 
 // ErrorEventItemTestThreePromise.then((res) => {
 //   ErrorEventItemTestThree.value = res;
 // });
-const tempData = new Promise((resolve, reject) => {
-  ErrorEventItemTestThreePromise.then((res) => {
-    ErrorEventItemTestThree.value = res;
-    // resolve(res);
-    resolve(res);
-    reject("problem");
-  });
-});
-async function test() {
-  const temp = (await tempData) as ErrorEventItemType;
-  const testRef = reactive(temp);
-  return testRef;
-}
+// const tempData = new Promise((resolve, reject) => {
+//   ErrorEventItemTestThreePromise.then((res) => {
+//     ErrorEventItemTestThree.value = res;
+//     // resolve(res);
+//     resolve(res);
+//     reject("problem");
+//   });
+// });
+// async function test() {
+//   const temp = (await tempData) as ErrorEventItemType;
+//   const testRef = reactive(temp);
+//   return testRef;
+// }
 const errorEventItemStore = useErrorEventItemStore();
 // const final = (await test()).deviceInfo;
 // const final2 = (await test()).locationInfo;
