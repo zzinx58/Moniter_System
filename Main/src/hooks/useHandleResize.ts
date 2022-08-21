@@ -17,7 +17,7 @@ export default function useHandleResize() {
     if (width <= 768) {
       appConfig.changeDevice(DeviceType.MOBILE);
       appConfig.toggleCollapse(true);
-    } else if (width < 992 && width > 768) {
+    } else if (width < 1025 && width > 768) {
       appConfig.changeDevice(DeviceType.PAD);
       appConfig.toggleCollapse(true);
     } else {

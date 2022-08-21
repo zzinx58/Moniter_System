@@ -1,14 +1,14 @@
 <template>
   <RouterView v-slot="{ Component }">
-    <Transition
+    <!-- <Transition
       name="custom-classes"
       enter-active-class="animate__animated animate__slideInRight"
       leave-active-class="animate__animated animate__slideOutRight"
-    >
-      <KeepAlive>
-        <component :is="Component" />
-      </KeepAlive>
-    </Transition>
+    > -->
+    <KeepAlive>
+      <component :is="Component" />
+    </KeepAlive>
+    <!-- </Transition> -->
   </RouterView>
 </template>
 

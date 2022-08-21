@@ -24,12 +24,15 @@ import { useSlideInDown, useSlideInLeft } from "@/hooks/useAnimate";
 import useHandleResize from "@/hooks/useHandleResize";
 import useTOPOLOGY from "@/hooks/useTOPOLOGY";
 import useAppConfigStore from "@/store/AppConfig";
+import useErrorEventItemStore from "@/store/ErrorEventItem";
+import axios from "axios";
 import { defineComponent, onMounted } from "vue";
 export default defineComponent({
   name: "Layout",
   setup() {
     useHandleResize();
     const appConfig = useAppConfigStore();
+    const ErrorEventItemStore = useErrorEventItemStore();
     onMounted(() => {
       useSlideInDown("#main-layout", "1.5s");
       useSlideInLeft("#sidebar-wrapper", "1s");

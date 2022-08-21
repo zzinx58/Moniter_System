@@ -5,12 +5,12 @@ import { computed, inject, reactive, Ref, toRaw } from "vue";
 import { ref } from "vue";
 import { ErrorEventItemType } from "@/views/eventPreview/types";
 const count = ref(0);
-const provideTest = inject("provideTest");
+// const provideTest = inject("provideTest");
 
 //Test-Start(大型DeBug现场)
 const props = defineProps<{
   msg: string;
-  erroreventitemtestone: ErrorEventItemType;
+  // erroreventitemtestone: ErrorEventItemType;
   // erroreventitemtestone: Ref<ErrorEventItemType>;
   //加了Ref外框反而取不了值,被提示要加.value,之后虽然有提示，但是会报错。
 }>();
@@ -51,14 +51,16 @@ const errorEventItemStore = useErrorEventItemStore();
 <template>
   <div class="test-anime">
     <h1>{{ props.msg }}</h1>
-    <div>{{ provideTest }}</div>
+    <!-- <div>{{ provideTest }}</div> -->
     <!-- <div>{{ final }}</div>
     <div>{{ final2 }}</div> -->
     <!-- <div>{{ computedData }}</div> -->
     <!-- <div>{{ props.erroreventitemtestone.deviceInfo }}</div> -->
     <!-- <div>{{ ErrorEventItemTestTwo }}</div> -->
     <!-- <div>{{ ErrorEventItemTestThree["sourceInfo"] }}</div> -->
-    <div>{{ errorEventItemStore.ErrorEventItemInstance.deviceInfo }}</div>
+    <div :style="{ width: 800 + 'px' }">
+      {{ errorEventItemStore.ErrorEventItemInstance }}
+    </div>
     <div class="card">
       <button type="button" @click="count++">count is {{ count }}</button>
       <p>
