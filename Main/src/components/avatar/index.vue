@@ -40,8 +40,10 @@ export default defineComponent({
       switch (command) {
         case "b":
           appConfig.isDrawerOpen = true;
+          break;
         case "a":
           router.push("/index/teamManage");
+          break;
       }
     };
     const userStore = useUserStore();

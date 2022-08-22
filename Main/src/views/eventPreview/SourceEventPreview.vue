@@ -100,7 +100,9 @@
     </ElTabPane>
     <ElTabPane label="场景重现">场景重现</ElTabPane>
     <ElTabPane label="用户行为">用户行为</ElTabPane>
-    <ElTabPane label="性能表现">性能表现</ElTabPane>
+    <ElTabPane label="性能表现">
+      <div class="json-content" v-html="'<pre>' + JSONContent + '</pre>'"></div>
+    </ElTabPane>
   </ElTabs>
 </template>
 
@@ -108,23 +110,37 @@
 import useAppConfigStore from "@/store/AppConfig";
 import useErrorEventItemStore from "@/store/ErrorEventItem";
 import { storeToRefs } from "pinia";
-import { defineComponent } from "vue";
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onBeforeMount,
+  onMounted,
+  ref,
+} from "vue";
 export default defineComponent({
   name: "SourceEventPreview",
   setup() {
     const appConfig = useAppConfigStore();
     const ErrorEventItemStore = useErrorEventItemStore();
     const { ErrorEventItemInstance: main } = storeToRefs(ErrorEventItemStore);
+    const JSONContent = computed(() => JSON.stringify(main.value, null, " "));
     return {
       appConfig,
       ErrorEventItemStore,
       main,
+      JSONContent,
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
+.json-content {
+  @apply;
+  font-size: 14px;
+}
+
 .Info-container {
   @apply;
   @apply flex;
