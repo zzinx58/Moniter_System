@@ -13,6 +13,13 @@
         >数据展示区</RouterLink
       >
     </li>
+    
+    <li class="bg-indigo-300">
+      <RouterLink to="/teamlist?viewKey=all" 
+        >团队列表展示区</RouterLink
+      >
+    </li>
+
   </ul>
 </template>
 
