@@ -96,8 +96,20 @@
         </el-dialog>
         <!-- 管理员权限模态框 -->
         <el-dialog v-model="authVisible" title="管理成员权限" width="40%">
-            <div v-show="isSuper"></div>
-            <div v-show="!isSuper">
+            <!-- 超级管理员下拉菜单 -->
+            <div v-show="isSuper" class="is-super-select">
+                <span>移交超级管理员权限</span>
+                <el-select v-model="options2Value" placeholder="请选择">
+                    <el-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
+                <span> 移交权限后，你的个人权限将变成成员，被指定成员将成为超级管理员</span>
+            </div>
+            <!--  普通成员下拉菜单-->
+            <div v-show="!isSuper" class="not-super-select">
+                <span>成员权限</span>
+                <el-select v-model="options2Value" placeholder="请选择">
+                    <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
             </div>
             <template #footer>
                 <span class="dialog-footer">
@@ -162,7 +174,13 @@ const tableData: User[] = reactive([
         auth: '超级管理员',
     },
 ])
+//用于展示的表格数据
 const filterData = reactive<Array<User>>([]);
+//模态框中的下拉菜单的值
+const options1Value = ref("");
+const options1 = reactive<Array<{ value: string, label: string }>>([]);
+const options2Value = ref("");
+const options2 = [{ value: '管理员', label: "管理员" }, { value: "成员", label: "成员" }]
 //根据搜索框内容计算
 const searchData = computed(() => tableData.filter(
     (data) =>
@@ -206,6 +224,7 @@ onMounted(async () => {
             status: i % 2 === 0 ? '正常' : '未激活',
             auth: "成员"
         }
+        options1.push({ value: obj.name, label: obj.name });
         filterData.push(obj);
         tableData.push(obj);
     }
@@ -249,5 +268,17 @@ const handleDelete = (index: number, row: User) => {
     >:first-child {
         transform: translateX(-3vw);
     }
+}
+.is-super-select{
+    display:flex;
+    flex-direction: column;
+    height:15vh;
+    justify-content: space-between;
+}
+.not-super-select {
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+    justify-content: space-between;
 }
 </style>
