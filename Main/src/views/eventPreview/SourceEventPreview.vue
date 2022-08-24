@@ -137,8 +137,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .json-content {
-  @apply;
+  @apply flex;
   font-size: 14px;
+  :deep(pre) {
+    white-space: pre-wrap;
+  }
 }
 
 .Info-container {

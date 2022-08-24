@@ -25,14 +25,11 @@
               <div class="EventItemType">
                 Type:{{ item.summaryInfo.eventType }}
               </div>
-              <!-- <div class="EventItemType">Type</div> -->
-              <!-- <div class="EventItemTime">Time</div> -->
               <div class="EventItemTime">
                 Time:{{ item.summaryInfo.timeStamp }}
               </div>
             </div>
             <div class="event-item-line">
-              <!-- <div class="EventItemDescription">Description</div> -->
               <div class="EventItemDescription">
                 Desc:{{ item.summaryInfo.description }}
               </div>
@@ -67,7 +64,6 @@ import { defineComponent, ref, onMounted } from "vue";
 import axios from "axios";
 import useErrorEventItemStore from "@/store/ErrorEventItem";
 import { ErrorEventItemType } from "./eventPreview/types";
-import { getHTMLElement } from "@/hooks/useHTMLUtils";
 export default defineComponent({
   name: "ErrorPreview",
   setup() {
@@ -100,16 +96,6 @@ export default defineComponent({
           }
         }
       });
-      // const EventItemList = document.getElementsByClassName("event-item");
-      // console.log(EventItemList.length);
-      // if (EventItemList[ind].className == "event-item") {
-      //   for (let i = 0; i < EventItemList.length; i++) {
-      //     EventItemList[i].className = "event-item";
-      //   }
-      //   EventItemList[ind].className = "test-class";
-      // } else {
-      //   EventItemList[ind].className = "event-item";
-      // }
     };
     return { appConfig, ErrorEventItemStore, ErrorEventList, onSelect };
   },
