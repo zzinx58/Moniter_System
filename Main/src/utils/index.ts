@@ -8,3 +8,7 @@ export function toHump(str: string): string {
       return char.toUpperCase();
     });
 }
+
+export function isExternal(path: string) {
+  return /^(https?:|mailto:|tel:)/.test(path);
+}
