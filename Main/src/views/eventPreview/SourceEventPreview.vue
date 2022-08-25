@@ -99,7 +99,21 @@
       </div>
     </ElTabPane>
     <ElTabPane label="场景重现">场景重现</ElTabPane>
-    <ElTabPane label="用户行为">用户行为</ElTabPane>
+    <ElTabPane label="用户行为">
+      <ElTimeline>
+        <el-timeline-item
+          v-for="(activity, index) in activities"
+          :key="index"
+          :type="(activity.type as any)"
+          :color="activity.color"
+          :size="(activity.size as any)"
+          :hollow="activity.hollow"
+          :timestamp="activity.timestamp"
+        >
+          {{ activity.content }}
+        </el-timeline-item>
+      </ElTimeline>
+    </ElTabPane>
     <ElTabPane label="性能表现">
       <div class="json-content" v-html="'<pre>' + JSONContent + '</pre>'"></div>
     </ElTabPane>
@@ -125,11 +139,40 @@ export default defineComponent({
     const ErrorEventItemStore = useErrorEventItemStore();
     const { ErrorEventItemInstance: main } = storeToRefs(ErrorEventItemStore);
     const JSONContent = computed(() => JSON.stringify(main.value, null, " "));
+    const activities = [
+      {
+        content: "Custom icon",
+        timestamp: "2018-04-12 20:46",
+        size: "large",
+        type: "primary",
+      },
+      {
+        content: "Custom color",
+        timestamp: "2018-04-03 20:46",
+        color: "#0bbd87",
+      },
+      {
+        content: "Custom size",
+        timestamp: "2018-04-03 20:46",
+        size: "large",
+      },
+      {
+        content: "Custom hollow",
+        timestamp: "2018-04-03 20:46",
+        type: "primary",
+        hollow: true,
+      },
+      {
+        content: "Default node",
+        timestamp: "2018-04-03 20:46",
+      },
+    ];
     return {
       appConfig,
       ErrorEventItemStore,
       main,
       JSONContent,
+      activities,
     };
   },
 });
