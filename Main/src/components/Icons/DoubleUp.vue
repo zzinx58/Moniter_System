@@ -1,5 +1,5 @@
 <template>
-  <Icon size="24" color="green">
+  <Icon>
     <ChevronDoubleUp16Filled />
   </Icon>
 </template>

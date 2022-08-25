@@ -1,5 +1,5 @@
 <template>
-  <Icon size="24" color="green">
+  <Icon>
     <ChevronDoubleDown16Filled />
   </Icon>
 </template>
@@ -10,6 +10,10 @@ import { Icon } from "@vicons/utils";
 import { ChevronDoubleDown16Filled } from "@vicons/fluent";
 export default defineComponent({
   name: "DoubleUp",
+  props: {
+    color: String,
+    iconSize: String,
+  },
   components: {
     Icon,
     ChevronDoubleDown16Filled,
