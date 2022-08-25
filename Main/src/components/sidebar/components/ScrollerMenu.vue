@@ -18,6 +18,14 @@
             <span>zzinx58测试页面</span>
           </template>
         </ElMenuItem>
+        <ElMenuItem index="/index/dashboard">
+          <template #title>
+            <Icon>
+              <Board28Regular />
+            </Icon>
+            <span>DashBoard</span>
+          </template>
+        </ElMenuItem>
         <ElMenuItem index="/index/helloworld">
           <template #title>
             <Icon>
@@ -40,6 +48,14 @@
               <Board28Regular />
             </Icon>
             <span>Test页面</span>
+          </template>
+        </ElMenuItem>
+        <ElMenuItem index="/login">
+          <template #title>
+            <Icon>
+              <Board28Regular />
+            </Icon>
+            <span>Login页面</span>
           </template>
         </ElMenuItem>
       </ElMenu>

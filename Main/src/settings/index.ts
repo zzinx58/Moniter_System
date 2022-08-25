@@ -18,6 +18,6 @@ export default {
   isDrawerOpen: false,
   showDevOptions: false,
   devOptions: {
-    showFPS: false,
+    showFPS: true,
   },
 } as AppConfigState;

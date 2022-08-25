@@ -1,16 +1,14 @@
+import { mapTwoLevelRouter } from "@/store/help";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: "/login",
-  //   name: "Login",
-  //   component: () => import("@/views/login/index.vue"),
-  //   meta: {
-  //     hidden: true,
-  //   },
-  // },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("@/views/login/index.vue"),
+  },
   {
     path: "/",
-    redirect: "/index",
+    redirect: "/index/dashboard",
   },
   {
     path: "/index",
@@ -22,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "helloworld",
         name: "HelloWorld",
         component: () => import("@/components/HelloWorld.vue"),
+      },
+      {
+        path: "dashboard",
+        name: "DashBoard",
+        component: () => import("@/views/dashboard/index.vue"),
       },
       {
         path: "errorPreview",
@@ -38,6 +41,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: mapTwoLevelRouter([...routes]),
+  // routes: routes,
 });
 export default router;

@@ -6,7 +6,7 @@
     ]"
   >
     <div class="action-item">
-      <div class="devOptions flex" v-if="appConfig.showDevOptions">
+      <div class="devOptions flex pr-3" v-if="appConfig.showDevOptions">
         <div class="action-item" v-if="appConfig.devOptions.showFPS">
           fps:{{ fps }}
         </div>
