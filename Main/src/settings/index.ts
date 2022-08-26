@@ -16,7 +16,7 @@ export default {
   isCollapse: false,
   isFixedHeader: false,
   isDrawerOpen: false,
-  showDevOptions: false,
+  showDevOptions: true,
   devOptions: {
     showFPS: true,
   },
