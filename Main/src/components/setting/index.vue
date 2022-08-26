@@ -7,7 +7,7 @@
   >
     <ElDivider>按钮显示</ElDivider>
     <div class="setting-item-wrapper">
-      <label>显示搜索按钮:</label>
+      <label>显示刷新按钮:</label>
       <ElSwitch v-model="appConfig.actionBar.isShowRefresh" />
     </div>
     <div class="setting-item-wrapper">

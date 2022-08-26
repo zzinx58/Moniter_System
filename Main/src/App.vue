@@ -7,6 +7,7 @@ import { defineComponent, ref, reactive } from "vue";
 export default defineComponent({
   name: "App",
   setup() {
+    localStorage.setItem("vueuse-color-scheme", "dark");
     return {};
   },
 });
